@@ -1,0 +1,52 @@
+<view>
+  <view class="input-container">
+    <view class="input-lists">姓名
+      <input placeholder="姓名" placeholder-class="input-text" focus="true"></input>
+    </view>
+    <view class="input-lists">性别
+      <input placeholder="性别" placeholder-class="input-text" focus="true"></input>
+    </view>
+    <view class="input-lists">年龄
+      <input placeholder="年龄" placeholder-class="input-text" focus="true"></input>
+    </view>
+    <view class="input-lists">工作
+      <input placeholder="工作类型" placeholder-class="input-text" focus="true"></input>
+    </view>
+    <view class="input-lists">手机号码
+      <input placeholder="11位手机号" maxlength="11" placeholder-class="input-text" focus="true"></input>
+    </view>
+    <view class="input-lists">选择地区
+      <view class="btn-district" bindtap="selectDistrict">地区信息</view>
+      <view class="arrow-right"></view>
+    </view>
+    <view class="input-lists">详细地址
+      <textarea placeholder="街道门牌信息" placeholder-class="input-text" focus="true"></textarea>
+    </view>
+  </view>
+  <view class="btn-save">保存</view>
+</view>
+
+
+<!--城市三级联动-->
+<!--使用动画时不能wx:if="{{city.length>0&&isVisible}}" ，不能hidden=''属性否则无动画效果-->
+<view class="picker-view" animation="{{animationAddressMenu}}" style="visibility:{{addressMenuIsShow ? 'visible':'hidden'}}">
+  <view style="height:10% ;width:95%;margin-top:10rpx">
+    <text catchtap="cityCancel">取消</text>
+    <text style="float: right" catchtap="citySure">确定</text>
+  </view>
+  <!--"可以显示默认的城市，使用后级联选择城市反应很慢就不使用了-->
+  <picker-view style="width: 100%; height: 300px;" bindchange="cityChange" value="{{value}}" wx:key="">
+    <picker-view-column>
+      <view wx:for="{{provinces}}" class="picker-item">
+        {{item.name}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{citys}}" class="picker-item" wx:key="">
+        {{item.name}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{areas}}" class="picker-item" wx:key="">
+        {{item.name}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

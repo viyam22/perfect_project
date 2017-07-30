@@ -1,0 +1,18 @@
+<template name="headData">
+  <view class="hd-container">
+    <view class="head-img"></view>
+    <view class="name">mumu</view>
+    <view class="data-box">
+      <view class="data">5</view>
+      <view class="data-name">排行</view>
+    </view>
+    <view class="data-box">
+      <view class="data">238475</view>
+      <view class="data-name">今日步数</view>
+    </view>
+    <view class="data-box">
+      <view class="data">1787</view>
+      <view class="data-name">积分</view>
+    </view>
+  </view>
+</template>

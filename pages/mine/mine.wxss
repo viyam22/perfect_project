@@ -1,21 +1,48 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/**mine.wxss**/
+@import "../../templates/component.wxss";
+.banner {
+  background-image: url('../../assets/banner_home.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 750rpx;
+  height: 420rpx;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.list-box {
+  height: 102rpx;
+  line-height: 102rpx;
+  color: #666;
+  padding: 0 35rpx;
+  background-color: #fff;
+  margin-top: 18rpx;
+  position: relative;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.arrow-right {
+  width: 18rpx;
+  height: 34rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('../../assets/arrow_right.png');
+  float: right;
+  margin-top: 35rpx;
 }
-
-.usermotto {
-  margin-top: 200px;
+.btn {
+  color: #42bd56;
+  border: 2rpx #42bd56 solid;
+  height: 58rpx;
+  line-height: 58rpx;
+  border-radius: 29rpx;
+  text-align: center;
+  font-size: 24rpx;
+  float: right;
+  margin-top: 24rpx;
+}
+.btn-share {
+  width: 158rpx;
+  margin-right: 19rpx;
+}
+.btn-sign {
+  width: 148rpx;
+  margin-right: 36rpx;
 }

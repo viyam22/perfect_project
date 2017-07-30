@@ -1,16 +1,17 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/ranking/ranking",
+    "pages/myData/myData",
+    "pages/mine/mine",
     "pages/exchange/exchange",
-    "pages/mine/mine"
+    "pages/ranking/ranking",
+    "pages/index/index",
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#42bd56",
     "navigationBarTitleText": "完美全民健身嘉年华",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
         "list": [{

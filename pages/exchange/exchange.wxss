@@ -1,21 +1,59 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/**exchange.wxss**/
+@import "../../templates/component.wxss";
+.banner {
+  background-image: url('../../assets/banner_exchange.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 750rpx;
+  height: 420rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.bd-container {
+  margin-top: 18rpx;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 2rpx #dcdcdc solid;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.bd-title {
+  height: 73rpx;
+  line-height: 73rpx;
+  color: #999;
+  font-size: 24rpx;
+  padding: 0 38rpx;
 }
-
-.usermotto {
-  margin-top: 200px;
+.walk-box {
+  border-top: 2rpx #dcdcdc solid;
+  padding: 0 38rpx;
+  height: 120rpx;
+  position: relative;
+  color: #666;
+}
+.weekday {
+  font-size: 30rpx;
+  line-height: 120rpx;
+  float: left;
+}
+.count {
+  position: absolute;
+  right: 314rpx;
+  line-height: 120rpx;
+}
+.btn-exchange {
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 58rpx;
+  height: 58rpx;
+  width: 158rpx;
+  border-radius: 29rpx;
+  float: right;
+  margin-top: 30rpx;
+}
+.exchange {
+  color: #42bd56;
+  border: 1rpx #42bd56 solid;
+}
+.exchanged {
+  background-color: #ebebf0;
+  border: 1rpx #ebebf0 solid;
 }
