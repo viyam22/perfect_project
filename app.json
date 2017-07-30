@@ -1,12 +1,42 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/ranking/ranking",
+    "pages/exchange/exchange",
+    "pages/mine/mine"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "完美全民健身嘉年华",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "/assets/icon_home.png",
+            "selectedIconPath": "/assets/icon_home_green.png"
+        },{
+            "pagePath": "pages/ranking/ranking",
+            "text": "排行",
+            "iconPath": "/assets/icon_ranking.png",
+            "selectedIconPath": "/assets/icon_ranking_green.png"
+        },{
+            "pagePath": "pages/exchange/exchange",
+            "text": "兑换",
+            "iconPath": "/assets/icon_exchange.png",
+            "selectedIconPath": "/assets/icon_exchange_green.png"
+        },{
+            "pagePath": "pages/mine/mine",
+            "text": "我的",
+            "iconPath": "/assets/icon_mine.png",
+            "selectedIconPath": "/assets/icon_mine_green.png"
+        }],
+        "color": "#666",
+        "selectedColor": "#42bd56",
+        "backgroundColor": "#FFF",
+        "borderStyle": "black"
   }
 }
