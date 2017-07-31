@@ -1,4 +1,11 @@
 @import "../../templates/selectarea/selectarea.wxss";
+/*@import "../../utils/weui.wxss";
+
+.picker{
+  padding: 19rpx 26rpx;
+  background-color: #FFFFFF;
+}
+ */
 
 .input-container {
   background-color: #fff;
@@ -36,21 +43,34 @@
   float: right;
   margin: 35rpx 30rpx 0 0;
 }
-input {
-  width: 512rpx;
-  position: absolute;
-  left: 174rpx;
+.input-box {
   height: 85rpx;
-  line-height: 85rpx;
-  top: 0;
-}
-textarea {
-  width: 512rpx;
   position: absolute;
   left: 174rpx;
-  height: 132rpx;
-  line-height: 85rpx;
   top: 0;
+  width: 512rpx;
+}
+.input-text {
+  color: #c7c6cc;
+}
+.copy-box {
+  height: 85rpx;
+  position: absolute;
+  left: 174rpx;
+  top: 0;
+  width: 512rpx;
+  line-height: 85rpx;
+  color: transparent;
+}
+.copy-address {
+  height: 114rpx;
+  position: absolute;
+  line-height: 50rpx;
+  left: 174rpx;
+  top: 18rpx;
+  width: 512rpx;
+  word-wrap: break-word; 
+  word-break: normal; 
 }
 .btn-district {
   width: 542rpx;
@@ -59,13 +79,6 @@ textarea {
   height: 85rpx;
   line-height: 85rpx;
   top: 0;
-  color: #c7c6cc;
-}
-.input-text {
-  color: #c7c6cc;
-  line-height: 85rpx;
-  height: 85rpx;
-  font-size: 30rpx;
 }
 
 /**
@@ -182,7 +195,7 @@ textarea {
   position: fixed;
   bottom: 0rpx;
   left: 0rpx;
-  height: 40vh;
+  height: 420rpx;
 }
 
 .picker-item {

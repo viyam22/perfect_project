@@ -10,12 +10,12 @@
     <view class="walk-box">
       <view class="weekday">星期五</view>
       <view class="count">7756步</view>
-      <view class="btn-exchange exchange">兑换成积分</view>
+      <view class="btn-exchange {{exchangeClass}}" bindtap="exchangePoints">{{isExchageTip}}</view>
     </view>
     <view class="walk-box">
       <view class="weekday">星期四</view>
       <view class="count">93874步</view>
-      <view class="btn-exchange exchanged">已兑换</view>
+      <view class="btn-exchange {{exchangeClass}}" bindtap="exchangePoints">{{isExchageTip}}</view>
     </view>
   </view>
 

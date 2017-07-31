@@ -87,3 +87,14 @@
 .border-bottom {
   border-bottom: 2rpx #dcdcdc solid;
 }
+.ranking-num {
+  font-size: 36rpx;
+  line-height: 86rpx;
+  position: absolute;
+  left: 35rpx;
+}
+.fri-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 86rpx;
+}

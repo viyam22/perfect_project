@@ -11,23 +11,23 @@
   </view>
 
   <view class="ranking-container">
-    <view class="tag-day tag tag-green">每日步数排行</view>
-    <view class="tag-total tag">总步数排行</view>
+    <view class="tag-day tag {{tagDayClass}}" bindtap="selectTag" data-index="0">每日步数排行</view>
+    <view class="tag-total tag {{tagTotalClass}}" bindtap="selectTag" data-index="1">总步数排行</view>
 
     <view class="count-box border-bottom">
+      <text class="ranking-num">1</text>
       <view class="head-img"></view>
       <view class="data-box">
-        <view class="name">mumu</view>
-        <view class="ranking">第16名</view>
+        <view class="fri-name">mumu</view>
       </view>
       <view class="walk-count-orange"><text class="walk-count">1787</text>步</view>
     </view>
 
     <view class="count-box border-bottom">
+      <text class="ranking-num">2</text>
       <view class="head-img"></view>
       <view class="data-box">
-        <view class="name">mumu</view>
-        <view class="ranking">第16名</view>
+        <view class="fri-name">mumu</view>
       </view>
       <view class="walk-count-green"><text class="walk-count">1787</text>步</view>
     </view>

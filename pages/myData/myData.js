@@ -13,7 +13,7 @@ Page({
    * areas当前被选中的区
    */
   data: {
-    menuType: 0,
+        menuType: 0,
     begin: null,
     status: 1,
     end: null,
@@ -27,10 +27,11 @@ Page({
     areas: [],
     province: '',
     city: '',
-    area: ''
+    area: '',
+    areaInfo: '地区信息',
+    areaInfoColor: '#c7c6cc',
   },
-
-  /**
+ /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
@@ -194,9 +195,10 @@ Page({
     var value = that.data.value
     that.startAddressAnimation(false)
     // 将选择的城市信息显示到输入框
-    var areaInfo = that.data.provinces[value[0]].name + ',' + that.data.citys[value[1]].name + ',' + that.data.areas[value[2]].name
+    var areaInfo = that.data.provinces[value[0]].name + ' ' + that.data.citys[value[1]].name + ' ' + that.data.areas[value[2]].name
     that.setData({
       areaInfo: areaInfo,
+      areaInfoColor: '#333'
     })
   },
   hideCitySelected: function (e) {
@@ -234,4 +236,12 @@ Page({
     console.log(this.data)
   },
 
+  //复制input中的地址
+  copyAddress: function (e) {
+    var that = this;
+    that.setData({
+      address: e.detail.value
+    })
+  },
+ 
 })
