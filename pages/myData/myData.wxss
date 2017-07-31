@@ -49,7 +49,8 @@ textarea {
   position: absolute;
   left: 174rpx;
   height: 132rpx;
-  line-height: 85rpx;
+  /*line-height: 85rpx;*/
+  /*padding-top: 26rpx; */
   top: 0;
 }
 .btn-district {
@@ -59,12 +60,12 @@ textarea {
   height: 85rpx;
   line-height: 85rpx;
   top: 0;
-  color: #c7c6cc;
 }
 .input-text {
   color: #c7c6cc;
   line-height: 85rpx;
   height: 85rpx;
+  padding-top: 26rpx;
   font-size: 30rpx;
 }
 

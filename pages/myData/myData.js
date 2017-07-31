@@ -27,7 +27,9 @@ Page({
     areas: [],
     province: '',
     city: '',
-    area: ''
+    area: '',
+    areaInfo: '地区信息',
+    areaInfoColor: '#c7c6cc'
   },
 
   /**
@@ -194,9 +196,10 @@ Page({
     var value = that.data.value
     that.startAddressAnimation(false)
     // 将选择的城市信息显示到输入框
-    var areaInfo = that.data.provinces[value[0]].name + ',' + that.data.citys[value[1]].name + ',' + that.data.areas[value[2]].name
+    var areaInfo = that.data.provinces[value[0]].name + ' ' + that.data.citys[value[1]].name + ' ' + that.data.areas[value[2]].name
     that.setData({
       areaInfo: areaInfo,
+      areaInfoColor: '#333'
     })
   },
   hideCitySelected: function (e) {
