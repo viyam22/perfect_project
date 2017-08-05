@@ -1,7 +1,7 @@
 <view>
   <view class="input-container">
     <view class="input-lists">姓名
-      <input placeholder="姓名" placeholder-class="input-text" focus="true"></input>
+      <input class="input-box" placeholder="姓名" placeholder-class="input-text" focus="true"></input>
     </view>
     <view class="input-lists">性别
       <input placeholder="性别" placeholder-class="input-text"></input>
@@ -26,6 +26,42 @@
   <view class="btn-save">保存</view>
 </view>
 
+<!--<view class="weui-cells__title">日期选择器</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">当前选择</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+              <view class="weui-input">{{region[0]}} {{region[1]}} {{region[2]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">地区选择器</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">当前选择</view>
+          </view> 
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+              <view class="weui-input">{{array[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="section">
+  <view class="section__title">省市区选择器</view>
+  <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
+    <view class="picker">
+      当前选择：{{region[0]}} {{region[1]}} {{region[2]}}
+    </view>
+  </picker>
+</view>-->
 
 <!--城市三级联动-->
 <!--使用动画时不能wx:if="{{city.length>0&&isVisible}}" ，不能hidden=''属性否则无动画效果-->

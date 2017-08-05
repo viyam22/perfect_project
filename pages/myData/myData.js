@@ -13,7 +13,7 @@ Page({
    * areas当前被选中的区
    */
   data: {
-    menuType: 0,
+        menuType: 0,
     begin: null,
     status: 1,
     end: null,
@@ -31,8 +31,7 @@ Page({
     areaInfo: '地区信息',
     areaInfoColor: '#c7c6cc'
   },
-
-  /**
+ /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
@@ -237,4 +236,12 @@ Page({
     console.log(this.data)
   },
 
+  //复制input中的地址
+  copyAddress: function (e) {
+    var that = this;
+    that.setData({
+      address: e.detail.value
+    })
+  },
+ 
 })
