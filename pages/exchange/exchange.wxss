@@ -39,21 +39,3 @@
   right: 314rpx;
   line-height: 120rpx;
 }
-.btn-exchange {
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 58rpx;
-  height: 58rpx;
-  width: 158rpx;
-  border-radius: 29rpx;
-  float: right;
-  margin-top: 30rpx;
-}
-.exchange {
-  color: #42bd56;
-  border: 1rpx #42bd56 solid;
-}
-.exchanged {
-  background-color: #ebebf0;
-  border: 1rpx #ebebf0 solid;
-}
