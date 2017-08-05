@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="guide">
+  <view class="join">
+    <view class="join-explain"></view>
+    <view class="join-btn"></view>
+  </view>
+</view>

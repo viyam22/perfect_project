@@ -205,7 +205,7 @@
   position: fixed;
   bottom: 0rpx;
   left: 0rpx;
-  height: 420rpx;
+  height: 40vh;
 }
 
 .picker-item {

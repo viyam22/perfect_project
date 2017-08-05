@@ -6,7 +6,7 @@
   <template is="headData"/>
 
   <view class="lists">
-    <view class="list-box">我的个人信息
+    <view class="list-box" bindtap="toMyDataPage">我的个人信息
       <view class="arrow-right"></view>
     </view>
   </view>

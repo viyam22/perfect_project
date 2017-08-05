@@ -177,7 +177,7 @@ Page({
     if (isShow) {
       that.animation.translateY(0 + 'vh').step()
     } else {
-      that.animation.translateY(40 + 'vh').step()
+      that.animation.translateY(50 + 'vh').step()
     }
     that.setData({
       animationAddressMenu: that.animation.export(),

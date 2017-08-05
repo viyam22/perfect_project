@@ -2,6 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/myData/myData",
+    "pages/exchange/exchange",
+    "pages/ranking/ranking",
     "pages/mine/mine",
     "pages/exchange/exchange",
     "pages/ranking/ranking",
