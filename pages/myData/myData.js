@@ -29,7 +29,7 @@ Page({
     city: '',
     area: '',
     areaInfo: '地区信息',
-    areaInfoColor: '#c7c6cc',
+    areaInfoColor: '#c7c6cc'
   },
  /**
    * 生命周期函数--监听页面加载
