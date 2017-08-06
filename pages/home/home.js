@@ -25,9 +25,9 @@ Page({
       todayStep: 0,   //今日的步数
       goOnRun: 0,    //还要继续走多少步才能兑换积分
       isExchangeFun: '',   //兑换积分按钮函数
-      exchangeClass: 'canNotExchange',   //兑换积分按钮样式
       canExchangePoint: 0,  //可以兑换多少积分
-    }
+    },
+    exchangeClass: 'canNotExchange',   //兑换积分按钮样式
   },
   // isExplain: header.explainTipToggle,
   getExchangeClass: function() {
@@ -57,24 +57,38 @@ Page({
 
   onLoad: function () {
     var that = this
-    // that.getWxRunData();
     app.getUserInfo(function(userInfo){
       console.log('userInfo:', userInfo)
       that.setData({
         userInfo:userInfo,
       })
-      that.getProgress();
     })
-    try {
-      var value = wx.getStorageSync('access_token')
-      if (value) {
-        that.setData({
-          accessTokenData: value,
-        })
-        that.getUserData();
+    that.initData();
+  },
+
+  toExchage: function() {
+    var that = this;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/toExchange',
+      method: 'POST',
+      header: {
+        Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
+      },
+      data: {
+        id: app.globalData.exchangeData[0].id,
+      },
+      success: function({data}) {
+        console.log('toExchage:', data);
+        if (data.code === 1) {
+          that.maskToggle();
+          that.setData({
+            exchangeClass: 'canNotExchange',
+          })
+        } else {
+          alert(data.msg);
+        }
       }
-    } catch (e) {
-    }
+    });
   },
 
   hiddenMask: function() {
@@ -84,64 +98,51 @@ Page({
 		})
   },
 
-  getUserData: function(){
+  initData: function() {
     var that = this;
-    wx.request({
-      url: 'https://wm.hengdikeji.com/api/v1/user',
-      header: {
-        Authorization: that.data.accessTokenData.token_type + ' ' + that.data.accessTokenData.access_token,
-      },
-      success: function({data}) {
-        console.log('getUserData:', data);
-        if (data.ischeck === 0) {
-          var signData = {
-            signClass: 'sign',
-            signTip: '签到',
-            signFun: 'goToSign',
-          }
-        } else {
-          var signData = {
-            signClass: 'signed',
-            signTip: '已签到',
-            signFun: '',
-          }
-        }
-        var pointData = {
-          sharePoint: data.shara_points, 
-          todayStep: data.run,
-          goOnRun: data.basis_run - data.run > 0 ? data.basis_run - data.run : 0,
-          isExchangeFun: data.basis_run - data.run > 0 ? '' : 'maskToggle',
-          exchangeClass: data.basis_run - data.run > 0 ? 'canNotExchange' : 'canExchange',
-          canExchangePoint: Math.floor(data.run * data.pro),
-        }
-        that.setData({
-            signData: signData,
-            pointData: pointData,
-            stepPercent: data.run / data.basis_run,
-          })
-        if (data.created_at.date === data.updated_at.date) {
-          wx.navigateTo({
-            url: '../guide/guide'
-          })
-        }
+    var data = app.globalData.userData;
+    console.log('getUserData:', data);
+    if (data.ischeck === 0) {
+      var signData = {
+        signClass: 'sign',
+        signTip: '签到',
+        signFun: 'goToSign',
       }
-    });
+    } else {
+      var signData = {
+        signClass: 'signed',
+        signTip: '已签到',
+        signFun: '',
+      }
+    }
+    var pointData = {
+      sharePoint: data.shara_points, 
+      todayStep: data.run,
+      goOnRun: data.basis_run - data.run > 0 ? data.basis_run - data.run : 0,
+      isExchangeFun: data.basis_run - data.run > 0 ? '' : 'maskToggle',
+      canExchangePoint: Math.floor(data.run * data.pro),
+    }
+    that.setData({
+        signData: signData,
+        pointData: pointData,
+        stepPercent: data.run / data.basis_run,
+        exchangeClass: data.basis_run - data.run < 0 && app.globalData.exchangeData[0].exchange === 0 ? 'canExchange' : 'canNotExchange',
+      })
+    that.getProgress();
+    console.log('-------------', data.created_at.date !== data.updated_at.date)
+    if (data.created_at.date !== data.updated_at.date) {
+      wx.navigateTo({
+        url: '../guide/guide'
+      })
+    }
   },
+
+  
 
   maskToggle: function() {
     var that = this;
     that.setData({
       isMask: !that.data.isMask,
-    })
-  },
-
-  getWxRunData: function() {
-    var that = this;
-    wx.getWeRunData({
-      success(res) {
-        console.log('getWxRunData:', res);
-        const encryptedData = res.encryptedData
-      }
     })
   },
 
@@ -151,10 +152,18 @@ Page({
       url: 'https://wm.hengdikeji.com/api/v1/check',
       method: 'POST',
       header: {
-        Authorization: that.data.accessTokenData.token_type + ' ' + that.data.accessTokenData.access_token,
+        Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
       success: function(res) {
         console.log('goToSign:', res);
+        var signData = {
+          signClass: 'signed',
+          signTip: '已签到',
+          signFun: '',
+        };
+        that.setData({
+          signData: signData,
+        })
       }
     });
   }

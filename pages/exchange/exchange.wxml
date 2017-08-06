@@ -5,26 +5,27 @@
 
   <view class="bd-container">
     <view class="bd-title">过去7天我的积分兑换积分情况</view>
-    <view class="walk-box">
-      <view class="weekday">星期五</view>
-      <view class="count">7756步</view>
-      <view class="btn-exchange {{exchangeClass}}" bindtap="exchangePoints" bindtap="maskToggle">{{isExchageTip}}</view>
+    <view class="walk-box" wx:for="{{exchangeData}}" wx:key="{{item.id}}">
+      <view class="weekday">{{item.week}}</view>
+      <view class="count">{{item.run}}步</view>
+      <view class="btn-exchange exchange" bindtap="maskPlay" data-index="{{index}}" data-run="{{item.run}}" data-id="{{item.id}}" wx:if="{{item.exchange === 0}}">兑换成积分</view>
+      <view class="btn-exchange exchanged" wx:if="{{item.exchange === 1}}">已兑换</view>      
     </view>
-    <view class="walk-box">
+    <!--<view class="walk-box">
       <view class="weekday">星期四</view>
       <view class="count">93874步</view>
-      <view class="btn-exchange {{exchangeClass}}" bindtap="exchangePoints" bindtap="maskToggle">{{isExchageTip}}</view>
-    </view>
+      <view class="btn-exchange {{exchangeClass}}" bindtap="exchangePoints" bindtap="maskPlay">{{isExchageTip}}</view>
+    </view>-->
   </view>
 
   <view class="mask" wx:if="{{isMask}}">
     <view class="exchange-tip bgAttr">
-      <view class="exchange-close bgAttr" bindtap="maskToggle"></view>
+      <view class="exchange-close bgAttr" bindtap="maskPlay"></view>
       <view class="exchange-box">
-        <view>目前的步数：<text class="exchange-step">3283</text></view>
-        <view>可兑换积分：<text class="exchange-point">30</text></view>
+        <view>目前的步数：<text class="exchange-step">{{exchangeRun}}</text></view>
+        <view>可兑换积分：<text class="exchange-point">{{exchangePoint}}</text></view>
       </view>
-      <view class="exchange-btn bgAttr"></view>
+      <view class="exchange-btn bgAttr" bindtap="toExchange"></view>
     </view>
   </view>
 

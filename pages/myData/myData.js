@@ -1,6 +1,7 @@
 // directory.js
 var address = require('../../utils/city.js')
 var animation
+var app = getApp();
 Page({
 
   /**
@@ -13,7 +14,7 @@ Page({
    * areas当前被选中的区
    */
   data: {
-        menuType: 0,
+    menuType: 0,
     begin: null,
     status: 1,
     end: null,
@@ -28,28 +29,51 @@ Page({
     province: '',
     city: '',
     area: '',
-    areaInfo: '地区信息',
-    areaInfoColor: '#c7c6cc'
+    areaName: '地区信息',
+    areaInfo: {},
+    areaInfoColor: '#c7c6cc',
+    inputName: '',
+    inputPhone: '',
+    inputAddress: '',
+    inputAge: '',
+    inputWork: '',
+    inputSex: '',
+    accessTokenData: {},
+    initData: {},
+    addressTip: 'address',
   },
  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    that.initData();
     // 初始化动画变量
     var animation = wx.createAnimation({
       duration: 500,
       transformOrigin: "50% 50%",
       timingFunction: 'ease',
     })
-    this.animation = animation;
+    that.animation = animation;
     // 默认联动显示北京
     var id = address.provinces[0].id
-    this.setData({
+    that.setData({
       provinces: address.provinces,
       citys: address.citys[id],
       areas: address.areas[address.citys[id][0].id],
     })
-    console.log(this.data)
+    console.log(that.data)
+
+    // 获取性别
+    var sex;
+    if (app.globalData.userInfo.gender === 2) {
+      sex = '女';
+    } else {
+      sex = '男';
+    }
+    that.setData({
+      inputSex: sex
+    })
   },
 
   // 显示
@@ -131,7 +155,7 @@ Page({
     if (isShow) {
       that.animation.translateY(0 + 'vh').step()
     } else {
-      that.animation.translateY(50 + 'vh').step()
+      that.animation.translateY(40 + 'vh').step()
     }
     that.setData({
       animationAddressMenu: that.animation.export(),
@@ -149,9 +173,14 @@ Page({
     var value = that.data.value
     that.startAddressAnimation(false)
     // 将选择的城市信息显示到输入框
-    var areaInfo = that.data.provinces[value[0]].name + ' ' + that.data.citys[value[1]].name + ' ' + that.data.areas[value[2]].name
+    var areaInfo = {
+      p: that.data.provinces[value[0]].name,
+      c: that.data.citys[value[1]].name,
+      a: that.data.areas[value[2]].name
+    }
     that.setData({
       areaInfo: areaInfo,
+      areaName: that.data.provinces[value[0]].name + ' ' + that.data.citys[value[1]].name + ' ' + that.data.areas[value[2]].name,
       areaInfoColor: '#333'
     })
   },
@@ -197,5 +226,83 @@ Page({
       address: e.detail.value
     })
   },
+
+  postUserData: function() {
+    var that = this;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/addres',
+      method: 'POST',
+      data: {
+        name: that.data.inputName,
+        jobType: that.data.inputWork,
+        mobile: that.data.inputPhone,
+        address: that.data.inputAddress,
+        age: that.data.inputAge,
+        p: that.data.areaInfo.p,
+        c: that.data.areaInfo.c,
+        a: that.data.areaInfo.a,
+      },
+      header: {
+        Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
+      },
+      success: function(res) {
+        console.log('postUserData', res);
+        if (res.data.code === 0) {
+          alert(res.data.msg);
+        }
+      }
+    })
+  },
+
+  getInputVal: function(e) {
+    var that = this;
+    var name = '', age = '', work = '', adress = '', phone = '';
+    console.log('eeeeeee', e);
+    if (e.target.dataset.type === 'name') {
+      that.setData({
+        inputName: e.detail.value,
+      })
+    };
+    if (e.target.dataset.type === 'age') {
+      that.setData({
+        inputAge: e.detail.value,
+      })
+    };
+    if (e.target.dataset.type === 'work') {
+      that.setData({
+        inputWork: e.detail.value,
+      })
+    };
+    if (e.target.dataset.type === 'phone') {
+      that.setData({
+        inputPhone: e.detail.value,
+      })
+    };
+    if (e.target.dataset.type === 'adress') {
+      that.setData({
+        inputAddress: e.detail.value,
+      })
+    };
+  },
+
+  initData: function() {
+    var that = this;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/myAddres',
+      header: {
+        Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
+      },
+      success: function({data}) {
+        console.log('getInputData', data);
+        that.setData({
+          initData: data,
+          areaName: data.p + ' ' + data.c + ' ' + data.a,
+          areaInfoColor: data.p || data.c || data.a ? '#333' : '#c7c6cc',
+          address: data.address,
+          addressTip: data.address ? '' : '地区信息',
+        })
+      }
+    })
+  }
  
 })

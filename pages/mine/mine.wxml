@@ -9,7 +9,7 @@
       <view class="arrow-right bgAttr"></view>
     </view>
   </view>
-  <view class="btn-sign btn">签到+3</view>
-  <view class="btn-share btn">邀请好友+3</view>
+  <view class="btn-sign btn" wx:if="{{isSign !== 1}}" bindtap="goToSign">签到+{{signPoint}}</view>
+  <view class="btn-share btn">邀请好友+{{sharePoint}}</view>
 </view>
 

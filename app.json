@@ -1,13 +1,15 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/mine/mine",
-    "pages/exchange/exchange",
     "pages/ranking/ranking",
     
-    "pages/guide/guide",
+    "pages/mine/mine",
+    "pages/exchange/exchange",
     "pages/myData/myData",
+    
+    "pages/guide/guide",
     "pages/logs/logs"
+    
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -29,6 +29,11 @@ App({
       method: 'POST',
       success: function({data}) {
         console.log('access_token:', data);
+        that.getWxRunData(data);
+        that.exchangeData(data);
+        that.getUserData(data);
+        that.todayRinking(data);
+        that.totalRinking(data);
         that.globalData.accessTokenData = data;
         try {
             wx.setStorageSync('access_token', data);
@@ -39,11 +44,24 @@ App({
     });
   },
 
+  exchangeData: function(data) {
+    var that = this;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/cList',
+      header: {
+        Authorization: data.token_type + ' ' + data.access_token,        
+      },
+      success: function({data}) {
+        that.globalData.exchangeData = data.reverse();
+        console.log('exchangeData----', that.globalData.exchangeData);
+      }
+    })
+  },
+
   getOpenid: function(){
     var that = this;
     wx.login({
       success: function ({code}) {
-        console.log('wx.login:', code)
         if (code) {
           //发起网络请求
           wx.request({
@@ -52,7 +70,6 @@ App({
             code: code,
           },
           success: function({data: {openid}}) {
-            console.log('wx.login:', openid);
             // that.getAccessToken(openid);
             that.isGetAccess(openid);
           }
@@ -72,7 +89,12 @@ App({
       if (saveTime) {
           console.log('value', saveTime)
           if (saveTime > myDate + 120) {
-            var access_token = wx.getStorageSync('access_token');
+            that.globalData.accessTokenData = wx.getStorageSync('access_token');
+            that.getWxRunData(wx.getStorageSync('access_token'));
+            that.exchangeData(wx.getStorageSync('access_token'));
+            that.getUserData(wx.getStorageSync('access_token'));
+            that.todayRinking(wx.getStorageSync('access_token'));
+            that.totalRinking(wx.getStorageSync('access_token'));
           } else {
             that.getAccessToken(openid);
           }
@@ -100,7 +122,78 @@ App({
     }
   },
 
+  getWxRunData: function(data) {
+    var that = this;
+    wx.getWeRunData({
+      success(res) {
+        console.log('getWxRunData:', res);
+        const encryptedData = res.encryptedData
+        wx.request({
+          url: 'https://wm.hengdikeji.com/api/v1/movement',
+          method: 'POST',
+          data: {
+            encryptedData: res.encryptedData,
+            iv: res.iv,
+          },
+          header: {
+            Authorization: data.token_type + ' ' + data.access_token,
+          },
+          success: function(res) {
+            console.log('movement:', res);
+          }
+        })
+      }
+    })
+  },
+
+  getUserData: function(data){
+    var that = this;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/user',
+      header: {
+        Authorization: data.token_type + ' ' + data.access_token,
+      },
+      success: function({data}) {
+        that.globalData.userData = data;
+        console.log('getUserData', data);
+      }
+    });
+  },
+
+  todayRinking: function(data) {
+    var that = this;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/daily',
+      header: {
+        Authorization: data.token_type + ' ' + data.access_token,
+      },
+      success: function({data}) {
+        that.globalData.todayRinking = data;
+        console.log('todayRinking', data);
+      }
+    });
+  },
+
+  totalRinking: function(data) {
+    var that = this;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/totalRank',
+      header: {
+        Authorization: data.token_type + ' ' + data.access_token,
+      },
+      success: function({data}) {
+        that.globalData.totalRinking = data;
+        console.log('=====totalRinking', data);
+      }
+    });
+  },
+
   globalData: {
     userInfo: null,
+    accessTokenData: {},
+    exchangeData: [],
+    userData: {},
+    todayRinking: {},
+    totalRinking: {},
   }
 })

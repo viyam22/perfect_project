@@ -36,6 +36,9 @@
 .arrow-right {
   width: 18rpx;
   height: 34rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   background-image: url('../../assets/arrow_right_dark.png');
   float: right;
   margin: 35rpx 30rpx 0 0;
@@ -54,9 +57,6 @@
   height: 85rpx;
   position: absolute;
   left: 174rpx;
-  height: 132rpx;
-  /*line-height: 85rpx;*/
-  /*padding-top: 26rpx; */
   top: 0;
   width: 512rpx;
   line-height: 85rpx;
@@ -79,13 +79,6 @@
   height: 85rpx;
   line-height: 85rpx;
   top: 0;
-}
-.input-text {
-  color: #c7c6cc;
-  line-height: 85rpx;
-  height: 85rpx;
-  padding-top: 26rpx;
-  font-size: 30rpx;
 }
 
 /**

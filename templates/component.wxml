@@ -3,15 +3,15 @@
     <image class="headData-img bgAttr" src="{{avatarUrl}}"></image>
     <view class="headData-name">{{nickName}}</view>
     <view class="headData-data-box">
-      <view class="headData-data">5</view>
+      <view class="headData-data">{{myRink}}</view>
       <view class="headData-data-name">排行</view>
     </view>
     <view class="headData-data-box">
-      <view class="headData-data">238475</view>
+      <view class="headData-data">{{todayRun}}</view>
       <view class="headData-data-name">今日步数</view>
     </view>
     <view class="headData-data-box">
-      <view class="headData-data">1787</view>
+      <view class="headData-data">{{myPoint}}</view>
       <view class="headData-data-name">积分</view>
     </view>
   </view>

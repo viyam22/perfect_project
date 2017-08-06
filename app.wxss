@@ -36,9 +36,9 @@ page {
   background-position: center;
 }
 .mask {
-  position: absolute;
+  position: fixed;
   top: 0;
-  height: 100%;
+  bottom: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
 }
