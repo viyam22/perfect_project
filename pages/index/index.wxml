@@ -1,6 +1,9 @@
 <!--index.wxml-->
-<view class="container">
+<view>
+  <import src="../../templates/component.wxml"/>
+  <template is="explain" data="{{isExplain}}"/>
   <view class="banner"></view>
+  
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <view class="userinfo-detail">

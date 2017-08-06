@@ -36,9 +36,6 @@
 .arrow-right {
   width: 18rpx;
   height: 34rpx;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   background-image: url('../../assets/arrow_right_dark.png');
   float: right;
   margin: 35rpx 30rpx 0 0;

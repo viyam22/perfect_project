@@ -1,13 +1,5 @@
 /**exchange.wxss**/
 @import "../../templates/component.wxss";
-.banner {
-  background-image: url('../../assets/banner_home.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 750rpx;
-  height: 420rpx;
-}
 
 .bd-container {
   margin-top: 18rpx;
@@ -38,4 +30,47 @@
   position: absolute;
   right: 314rpx;
   line-height: 120rpx;
+}
+
+
+.exchange-tip {
+  background-image: url('../../assets/exchange_bg.png');
+  position: relative;
+  top: 129rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 613rpx;
+  height: 820rpx;
+}
+.exchange-close {
+  background-image: url('../../assets/btn_close1.png');
+  position: absolute;
+  right: 23rpx;
+  width: 62rpx;
+  height: 67rpx;
+}
+.exchange-box {
+  color: #999;
+  font-size: 28rpx;
+  position: absolute;
+  top: 547rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 38rpx;
+}
+.exchange-step {
+  font-size: 30rpx;
+}
+.exchange-point {
+  font-size: 30rpx;
+  color: #ff6f00;
+}
+.exchange-btn {
+  background-image: url('../../assets/btn-certain.png');
+  position: absolute;
+  bottom: 53rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 442rpx;
+  height: 93rpx;
 }

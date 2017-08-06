@@ -1,0 +1,223 @@
+@import "../../templates/component.wxss";
+.userinfo {
+  background: #fff;
+  height: 140rpx;
+  width: 100%;
+  position: relative;
+  padding: 30rpx 0;
+}
+.userinfo-avatar {
+  width: 140rpx;
+  height: 140rpx;
+  position: absolute;
+  left: 54rpx;
+  top: 30rpx;
+  border-radius: 50%;
+}
+.userinfo-box {
+  float: left;
+  position: absolute;
+  left: 230rpx;
+  top: 68rpx;
+}
+.userinfo-sign {
+  font-size: 24rpx;
+  color: #999 ;
+}
+.userinfo-nickname {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+}
+.btn-share {
+  color: #42bd56;
+  font-size: 24rpx;
+  width: 160rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+  border: 2rpx #42bd56 solid; 
+  border-radius: 30rpx;
+  text-align: center;
+  position: absolute;
+  left: 393rpx;
+}
+.btn-sign {
+  font-size: 24rpx;
+  width: 150rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  position: absolute;
+  left: 566rpx;
+}
+.sign {
+  color: #42bd56;
+  border: 2rpx #42bd56 solid; 
+}
+.signed {
+  color: #999;
+  background-color: #ebebf0;
+}
+
+.p-sector {
+	position: absolute;
+	top: 37rpx;
+	left: 229rpx;
+	width: 292rpx;
+	height: 292rpx;
+	border: 4rpx solid #efefee;
+	border-bottom: 4rpx solid transparent;
+	border-radius: 100%;
+}
+.p-progress {
+	position: absolute;
+	top: 187rpx;
+	left: 227rpx;
+	width: 144rpx;
+	height: 144rpx;
+	border: 8rpx #42bd56 solid;
+	border-top: 0rpx solid transparent;
+	border-right: 0rpx solid transparent;
+	border-bottom-left-radius: 100%;
+	transform-origin: 152rpx 0rpx;
+}
+.p-mask {
+	position: absolute;
+	top: 187rpx;
+	left: 227rpx;
+	width: 144rpx;
+	height: 144rpx;
+	border: 12rpx #fff solid;
+	border-top: 0rpx solid transparent;
+	border-right: 0rpx solid transparent;
+	border-bottom-left-radius: 100%;
+	transform-origin: 152rpx 0rpx;
+  transform: rotate(-45deg);
+}
+.p-btn-an {
+	width: 40rpx;
+	height: 20rpx;
+	background-color: #42bd56;
+	color: #fff;
+}
+.p-point {
+	width: 8rpx;
+	height: 8rpx;
+	background-color: #42bd56;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 10;
+}
+.p-pointStatic {
+	left: 38rpx;
+	bottom: 37rpx;
+}
+.p-pointMove {
+	left: -7rpx;
+	bottom: 142rpx;
+}
+
+.count {
+  height: 470rpx;
+  width: 100%;
+  background-color: #fff;
+  margin-top: 18rpx;
+  position: relative;
+}
+.count-box {
+  width: 292rpx;
+  height: 222rpx;
+  padding-top: 70rpx;
+  position:absolute;
+  top:37rpx;
+  left:229rpx;
+  text-align: center
+}
+.count-title {
+  font-size: 28rpx;
+  color: #999;
+}
+.count-data {
+  font-size: 70rpx;
+  color: #42bd56;
+  font-weight: bold;
+  line-height: 130rpx;
+}
+.count-ranking {
+  font-size: 30rpx;
+  color: #999;
+}
+.count-btn {
+  font-size: 36rpx;
+  width: 370rpx;
+  line-height: 77rpx;
+  height: 77rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  position: absolute;
+  top: 330rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.canExchange {
+  color: #42bd56;
+  border: 2rpx #42bd56 solid; 
+}
+.canNotExchange {
+  color: #999;
+  background-color: #ebebf0;
+}
+.count-tip {
+  color: #999;
+  font-size: 24rpx;
+  position: absolute;
+  top: 417rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*
+** 兑换积分弹窗
+*/
+.exchange-tip {
+  background-image: url('../../assets/exchange_bg.png');
+  position: relative;
+  top: 129rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 613rpx;
+  height: 820rpx;
+}
+.exchange-close {
+  background-image: url('../../assets/btn_close1.png');
+  position: absolute;
+  right: 23rpx;
+  width: 62rpx;
+  height: 67rpx;
+}
+.exchange-box {
+  color: #999;
+  font-size: 28rpx;
+  position: absolute;
+  top: 547rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 38rpx;
+}
+.exchange-step {
+  font-size: 30rpx;
+}
+.exchange-point {
+  font-size: 30rpx;
+  color: #ff6f00;
+}
+.exchange-btn {
+  background-image: url('../../assets/btn-certain.png');
+  position: absolute;
+  bottom: 53rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 442rpx;
+  height: 93rpx;
+}

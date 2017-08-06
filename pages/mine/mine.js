@@ -3,9 +3,20 @@
 var app = getApp()
 Page({
   data: {
+    userInfo: {},
   },
-  onLoad: function () {
+  
+  onReady: function () {
+    console.log('onLoad')
+    var that = this;
+    app.getUserInfo(function(userInfo){
+      console.log('userInfo:', userInfo)
+      that.setData({
+        userInfo:userInfo
+      })
+    })
   },
+
   toMyDataPage: function() {
     wx.navigateTo({
       url: '../myData/myData'

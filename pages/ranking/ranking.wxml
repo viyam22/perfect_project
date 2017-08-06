@@ -1,10 +1,12 @@
 <!--index.wxml-->
 <view class="">
-  <view class="banner"></view>
+  <import src="../../templates/component.wxml"/>
+  <template is="banner"/>
+  <template is="explain" data="{{isExplain}}"/>
   <view class="count-box">
-    <view class="head-img"></view>
+    <image class="head-img bgAttr" src="{{userInfo.avatarUrl}}"></image>
     <view class="data-box">
-      <view class="name">mumu</view>
+      <view class="name">{{userInfo.nickName}}</view>
       <view class="ranking">第16名</view>
     </view>
     <view class="walk-count-green"><text class="walk-count">1787</text>步</view>
@@ -16,7 +18,7 @@
 
     <view class="count-box border-bottom">
       <text class="ranking-num">1</text>
-      <view class="head-img"></view>
+      <image class="head-img bgAttr"></image>
       <view class="data-box">
         <view class="fri-name">mumu</view>
       </view>
@@ -25,7 +27,7 @@
 
     <view class="count-box border-bottom">
       <text class="ranking-num">2</text>
-      <view class="head-img"></view>
+      <image class="head-img bgAttr"></image>
       <view class="data-box">
         <view class="fri-name">mumu</view>
       </view>

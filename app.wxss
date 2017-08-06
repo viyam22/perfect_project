@@ -30,3 +30,15 @@ page {
   background-color: #ebebf0;
   border: 1rpx #ebebf0 solid;
 }
+.bgAttr {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.mask {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}

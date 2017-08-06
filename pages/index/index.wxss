@@ -1,4 +1,5 @@
 /**index.wxss**/
+@import "../../templates/component.wxss";
 .container {
   padding: 0;
 }
@@ -12,16 +13,16 @@
 }
 .userinfo {
   background: #fff;
+  height: 200rpx;
   width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-around;
+  position: relative;
 }
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+  width: 140rpx;
+  height: 140rpx;
+  position: absolute;
+  left: 54rpx;
+  top: 30rpx;
   border-radius: 50%;
 }
 .userinfo-detail {
@@ -29,9 +30,8 @@
   flex-flow: column nowrap;
 }
 .userinfo-sign {
-  line-height: 20px;
-  font-size: 14px;
-  color: #ccc;
+  font-size: 24rpx;
+  color: #999 ;
 }
 .userinfo-nickname {
   font-size: 18px;

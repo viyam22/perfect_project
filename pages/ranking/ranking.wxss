@@ -1,12 +1,5 @@
 /**ranking.wxss**/
-.banner {
-  background-image: url('../../assets/banner_home.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 750rpx;
-  height: 420rpx;
-}
+@import "../../templates/component.wxss";
 .count-box {
   width: 100%;
   height: 86rpx;
@@ -14,10 +7,6 @@
   padding: 27rpx 0;
 }
 .head-img {
-  background-image: url('../../assets/banner_home.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   width: 85rpx;
   height: 85rpx;
   border-radius: 50%;

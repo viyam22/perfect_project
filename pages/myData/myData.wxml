@@ -17,7 +17,7 @@
     </view>
     <view class="input-lists">选择地区
       <view class="btn-district" bindtap="selectDistrict" style="color: {{areaInfoColor}};">{{areaInfo}}</view>
-      <view class="arrow-right"></view>
+      <view class="arrow-right bgAttr"></view>
     </view>
     <view class="input-lists">详细地址
       <textarea placeholder="街道门牌信息" placeholder-class="input-text"></textarea>

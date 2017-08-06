@@ -1,3 +1,4 @@
+@import "../../templates/component.wxss";
 page {
   height: 100%;
 }
@@ -6,32 +7,32 @@ page {
 }
 .join {
   background-image: url('../../assets/first_bg.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   width: 100%;
   height: 100%;
 }
-.join-explain {
-  background-image: url('../../assets/explain.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 97rpx;
-  height: 78rpx;
-  position: absolute;
-  left: 627rpx;
-  top: -2rpx;
-}
 .join-btn {
   background-image: url('../../assets/btn_ijoin.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   width: 370rpx;
   height: 77rpx;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: 930rpx;
+}
+.mask-tip {
+  background-image: url('../../assets/guide.png');
+  width: 602rpx;
+  height: 764rpx;
+  position: absolute;
+  left: 82rpx;
+  top: 84rpx;
+}
+.mask-btn {
+  background-image: url('../../assets/btn_ikonw.png');
+  width: 400rpx;
+  height: 90rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 928rpx;
 }

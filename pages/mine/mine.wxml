@@ -1,13 +1,12 @@
 <!--index.wxml-->
 <view class="">
-  <view class="banner"></view>
-
   <import src="../../templates/component.wxml"/>
-  <template is="headData"/>
+  <template is="banner"/>
+  <template is="headData" data="{{...userInfo}}"/>
 
   <view class="lists">
     <view class="list-box" bindtap="toMyDataPage">我的个人信息
-      <view class="arrow-right"></view>
+      <view class="arrow-right bgAttr"></view>
     </view>
   </view>
   <view class="btn-sign btn">签到+3</view>

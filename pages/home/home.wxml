@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<view>
+  <import src="../../templates/component.wxml"/>
+  <template is="banner"/>
+  <template is="explain" data="{{isExplain}}"/>
+  
+  <view class="userinfo">
+    <image class="userinfo-avatar bgAttr" background-size="cover" src="{{userInfo.avatarUrl}}"></image>
+    <view class="userinfo-box">
+      <view class="userinfo-sign">早上好~</view>
+      <view class="userinfo-nickname">{{userInfo.nickName}}</view>
+    </view>
+    <view class="btn-share btn" bindtap="share">邀请好友+{{pointData.sharePoint}}</view>
+    <view class="btn-sign {{signData.signClass}}" bindtap="{{signData.signFun}}">{{signData.signTip}}</view>
+  </view>
+
+  <view class="count">
+    <view class="p-box">
+      <view class="p-sector">
+        <div class="p-pointStatic point" wx:if="{{rotate0 > -45}}"></div>
+        <!-- <div class="point" style="left: {{pointLeft}}px, bottom: {{pointBottom}}px" hidden="rotate0 === 0"></div> -->
+      </view>
+      <view class="p-progress" style="transform: rotate({{rotate0}}deg);position: relative;">
+        <div class="p-pointMove point" wx:if="{{rotate0 > -45}}"></div>
+      </view>
+      <view class="p-progress" style="transform: rotate(46deg);" wx:if="{{rotate0 > 47}}"></view>
+      <view class="p-progress" style="transform: rotate(135deg);" wx:if="{{rotate0 > 136}}"></view>
+      <view class="p-mask"></view>
+      
+      <!--<view class="p-btn-an" bindtap="getProgress">按!</view>-->
+    </view>
+
+    <view class="count-box">
+      <view class="count-title">今日步数</view>
+      <view class="count-data">{{pointData.todayStep}}</view>
+      <view class="count-ranking">第16名</view>
+    </view>
+    <view class="count-btn {{pointData.exchangeClass}}" bindtap="{{pointData.isExchangeFun}}">兑换积分</view>
+    <text class="count-tip" wx:if="{{pointData.goOnRun > 0}}">还差{{pointData.goOnRun}}步，即可兑换积分</text>
+  </view>
+
+<!-- 兑换积分弹窗 -->
+  <view class="mask" wx:if="{{isMask}}">
+    <view class="exchange-tip bgAttr">
+      <view class="exchange-close bgAttr" bindtap="maskToggle"></view>
+      <view class="exchange-box">
+        <view>目前的步数：<text class="exchange-step">{{pointData.todayStep}}</text></view>
+        <view>可兑换积分：<text class="exchange-point">{{pointData.canExchangePoint}}</text></view>
+      </view>
+      <view class="exchange-btn bgAttr"></view>
+    </view>
+  </view>
+
+</view>

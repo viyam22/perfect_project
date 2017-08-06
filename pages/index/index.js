@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+var component = require('../../templates/component.js');
 var app = getApp()
 Page({
   data: {

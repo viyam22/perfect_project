@@ -1,12 +1,22 @@
-//index.js
-//获取应用实例
 var app = getApp()
 Page({
   data: {
     tagDayClass: 'tag-green',
     tagTotalClass: '',
+    userInfo: {},
   },
-  //事件处理函数
+
+  onReady: function () {
+    console.log('onLoad')
+    var that = this;
+    app.getUserInfo(function(userInfo){
+      console.log('userInfo:', userInfo)
+      that.setData({
+        userInfo:userInfo
+      })
+    })
+  },
+
   selectTag: function(e) {
     var that = this;
     if (e.target.dataset.index == 0) {
