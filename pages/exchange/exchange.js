@@ -40,7 +40,9 @@ Page({
       }
     });
   },
-
+  onPullDownRefresh: function() {
+    console.log('fuck');
+  },
   maskPlay: function({target: {dataset}}) {
     var that = this;
     console.log('eeee', dataset);

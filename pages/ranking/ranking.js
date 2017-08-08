@@ -18,10 +18,6 @@ Page({
     })
   },
 
-  onPullDownRefresh: function() {
-
-  },
-
   selectTag: function(e) {
     console.log('!!____---rinkingData', app.globalData.totalRinking)
     var that = this;
