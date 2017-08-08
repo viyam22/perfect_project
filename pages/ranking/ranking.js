@@ -8,7 +8,7 @@ Page({
     todayRinking: {},
   },
 
-  onLoad: function () {
+  onShow: function () {
     var that = this;
     console.log('~~~~~~', app.globalData)
     that.setData({

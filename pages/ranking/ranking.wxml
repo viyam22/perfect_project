@@ -2,7 +2,7 @@
 <view class="">
   <import src="../../templates/component.wxml"/>
   <template is="banner"/>
-  <template is="explain" data="{{isExplain}}"/>
+  <!--<template is="explain" data="{{isExplain}}"/>-->
   <view class="count-box">
     <image class="head-img bgAttr" src="{{userInfo.avatarUrl}}"></image>
     <view class="data-box">

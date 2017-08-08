@@ -9,7 +9,7 @@ Page({
     isSign: null,
   },
   
-  onLoad: function () {
+  onShow: function () {
     console.log('onLoad')
     var that = this;
     var userInfo = {

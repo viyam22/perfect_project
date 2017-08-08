@@ -61,7 +61,7 @@ Page({
     })
   },
   
-  onLoad: function () {
+  onShow: function () {
     console.log('onLoad')
     var that = this;
     var exchangeData = app.globalData.exchangeData;

@@ -55,19 +55,16 @@ Page({
     })
   },
 
-  onLoad: function () {
+  onShow: function () {
     var that = this
-    console.log('~~~~~~home.js', app.globalData)
-    that.setData({
-      myRink: app.globalData.todayRinking.myRank,
-    })
-    app.getUserInfo(function(userInfo){
-      console.log('**************userInfo:', userInfo)
+    app.appInitData(function(globalData){
+      console.log('**************userInfo:', globalData)
+      that.initData();
       that.setData({
-        userInfo:userInfo,
+        userInfo: globalData.userInfo,
       })
     })
-    that.initData();
+    
   },
 
   toExchage: function() {
@@ -131,6 +128,7 @@ Page({
         pointData: pointData,
         stepPercent: data.run / data.basis_run,
         exchangeClass: data.basis_run - data.run < 0 && app.globalData.exchangeData[0].exchange === 0 ? 'canExchange' : 'canNotExchange',
+        myRink: app.globalData.todayRinking.myRank,
       })
     that.getProgress();
     console.log('-------------', data.created_at.date !== data.updated_at.date)

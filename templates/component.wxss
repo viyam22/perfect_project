@@ -79,7 +79,7 @@
 }
 
 .banner {
-  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/assets/banner_home.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/banner_home.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
