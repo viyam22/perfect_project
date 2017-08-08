@@ -1,11 +1,10 @@
 {
   "pages":[
-    
     "pages/home/home",
-    "pages/mine/mine",
-    "pages/exchange/exchange",
     "pages/myData/myData",
     "pages/ranking/ranking",
+    "pages/mine/mine",
+    "pages/exchange/exchange",
     "pages/guide/guide",
     "pages/logs/logs"
     

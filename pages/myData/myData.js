@@ -41,13 +41,24 @@ Page({
     accessTokenData: {},
     initData: {},
     addressTip: 'address',
+    buttonTip: '',
+    buttonFun: '',
+    selectFun: '',
+    sexIndex: -1,
+    sexArray: ['男', '女'],
+    isNotWrite: false,
   },
  /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(res) {
+    console.log('!!!!!!!!!!!!!!!!!!!!', res)
+  },
+  onShow: function (options) {
     var that = this;
-    that.initData();
+    app.appInitData(function(globalData){
+      that.initData();
+    })
     // 初始化动画变量
     var animation = wx.createAnimation({
       duration: 500,
@@ -62,17 +73,12 @@ Page({
       citys: address.citys[id],
       areas: address.areas[address.citys[id][0].id],
     })
-    console.log(that.data)
+  },
 
-    // 获取性别
-    var sex;
-    if (app.globalData.userInfo.gender === 2) {
-      sex = '女';
-    } else {
-      sex = '男';
-    }
-    that.setData({
-      inputSex: sex
+  bindPickerChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      sexIndex: e.detail.value
     })
   },
 
@@ -142,7 +148,6 @@ Page({
   // 点击所在地区弹出选择框
   selectDistrict: function (e) {
     var that = this
-    console.log('111111111')
     if (that.data.addressMenuIsShow) {
       return
     }
@@ -227,61 +232,74 @@ Page({
     })
   },
 
+  showToast: function(title) {
+    wx.showToast({
+      title: title,
+    })
+  },
+
   postUserData: function() {
     var that = this;
-    if (!that.data.inputName) {
-      alert('请填写姓名！')
-      return;
-    }
-    if (!that.data.inputWork) {
-      alert('请填写工作类型！')
-      return;
-    }
-    if (!that.data.inputPhone) {
-      alert('请填写电话！')
-      return;
-    }
-    if (!that.data.inputAddress) {
-      alert('请填写详细地址！')
-      return;
-    }
-    if (!that.data.inputAge) {
-      alert('请填写年龄！')
-      return;
-    }
-    if (!that.data.areaInfo.p) {
-      alert('请选择所在省份！')
-      return;
-    }
-    if (!that.data.areaInfo.c) {
-      alert('请选择所在城市！')
-      return;
-    }
-    if (!that.data.areaInfo.a) {
-      alert('请选择所在地区！')
-      return;
-    }
-
+    // if (!that.data.inputName && !that.data.initData.name) {
+    //   that.showToast('请填写姓名！')
+    //   return;
+    // }
+    // if (!that.data.inputWork && !that.data.initData.jobType) {
+    //   that.showToast('请填写工作类型！')
+    //   return;
+    // }
+    // if (!that.data.inputPhone && !that.data.initData.mobile) {
+    //   that.showToast('请填写电话！')
+    //   return;
+    // }
+    // if (!that.data.inputAddress && !that.data.initData.address) {
+    //   that.showToast('请填写详细地址！')
+    //   return;
+    // }
+    // if (!that.data.inputAge && !that.data.initData.age) {
+    //   that.showToast('请填写年龄！')
+    //   return;
+    // }
+    // if (!that.data.areaInfo.p && !that.data.initData.p) {
+    //   that.showToast('请选择所在省份！')
+    //   return;
+    // }
+    // if (!that.data.areaInfo.c && !that.data.initData.c) {
+    //   that.showToast('请选择所在城市！')
+    //   return;
+    // }
+    // if (!that.data.areaInfo.a && !that.data.initData.a) {
+    //   that.showToast('请选择所在地区！')
+    //   return;
+    // }
     wx.request({
       url: 'https://wm.hengdikeji.com/api/v1/addres',
       method: 'POST',
       data: {
-        name: that.data.inputName,
-        jobType: that.data.inputWork,
-        mobile: that.data.inputPhone,
-        address: that.data.inputAddress,
-        age: that.data.inputAge,
-        p: that.data.areaInfo.p,
-        c: that.data.areaInfo.c,
-        a: that.data.areaInfo.a,
+        gender: that.data.sexIndex + 1,
+        name: that.data.inputName || that.data.initData.name,
+        jobType: that.data.inputWork || that.data.initData.jobType,
+        mobile: that.data.inputPhone || that.data.initData.mobile,
+        address: that.data.inputAddress || that.data.initData.address,
+        age: that.data.inputAge || that.data.initData.age,
+        p: that.data.areaInfo.p || that.data.initData.p,
+        c: that.data.areaInfo.c || that.data.initData.p,
+        a: that.data.areaInfo.a ||　that.data.initData.p,
       },
       header: {
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
       success: function(res) {
+        that.showToast('保存成功！')
         console.log('postUserData', res);
+        that.setData({
+          buttonTip: '修改信息',
+          buttonFun: 'modifyInfo',
+          selectFun: '',
+          isNotWrite: true,
+        })
         if (res.data.code === 0) {
-          alert(res.data.msg);
+          that.showToast(res.data.msg);
         }
       }
     })
@@ -318,6 +336,16 @@ Page({
     };
   },
 
+  modifyInfo: function() {
+    var that = this;
+    that.setData({
+      buttonTip: '保存',
+      buttonFun: 'postUserData',
+      isNotWrite: false,
+      selectFun: 'selectDistrict',
+    })
+  },
+
   initData: function() {
     var that = this;
     wx.request({
@@ -327,12 +355,27 @@ Page({
       },
       success: function({data}) {
         console.log('getInputData', data);
+        if (!data.name) {
+          that.setData({
+            sexIndex: data.gender ? data.gender - 1 : app.globalData.userInfo.gender - 1,
+            buttonTip: '保存',
+            buttonFun: 'postUserData',
+            selectFun: 'selectDistrict',
+            isNotWrite: false,
+          })
+          return;
+        }
         that.setData({
           initData: data,
           areaName: data.p + ' ' + data.c + ' ' + data.a,
           areaInfoColor: data.p || data.c || data.a ? '#333' : '#c7c6cc',
           address: data.address,
           addressTip: data.address ? '' : '地区信息',
+          sexIndex: data.gender ? data.gender - 1 : app.globalData.userInfo.gender - 1,
+          isNotWrite: true,
+          buttonFun: 'modifyInfo',
+          selectFun: '',
+          buttonTip: '修改信息',
         })
       }
     })

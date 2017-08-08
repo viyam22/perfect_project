@@ -82,4 +82,11 @@ Page({
       userInfo: userInfo,
     })
   },
+
+  onShareAppMessage: function () {
+    return {
+      title: '完美邀您挑战百万俱乐部',
+      path: '/pages/home/home?id=' + app.globalData.userData.id,
+    }
+  }
 })
