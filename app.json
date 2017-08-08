@@ -1,7 +1,6 @@
 {
   "pages":[
     
-    
     "pages/home/home",
     "pages/mine/mine",
     "pages/exchange/exchange",
@@ -21,23 +20,23 @@
     "list": [{
       "pagePath": "pages/home/home",
       "text": "首页",
-      "iconPath": "/assets/icon_home.png",
-      "selectedIconPath": "/assets/icon_home_green.png"
+      "iconPath": "./assets/icon_home.png",
+      "selectedIconPath": "./assets/icon_home_green.png"
     },{
       "pagePath": "pages/ranking/ranking",
       "text": "排行",
-      "iconPath": "/assets/icon_ranking.png",
-      "selectedIconPath": "/assets/icon_ranking_green.png"
+      "iconPath": "./assets/icon_ranking.png",
+      "selectedIconPath": "./assets/icon_ranking_green.png"
     },{
       "pagePath": "pages/exchange/exchange",
       "text": "兑换",
-      "iconPath": "/assets/icon_exchange.png",
-      "selectedIconPath": "/assets/icon_exchange_green.png"
+      "iconPath": "./assets/icon_exchange.png",
+      "selectedIconPath": "./assets/icon_exchange_green.png"
     },{
       "pagePath": "pages/mine/mine",
       "text": "我的",
-      "iconPath": "/assets/icon_mine.png",
-      "selectedIconPath": "/assets/icon_mine_green.png"
+      "iconPath": "./assets/icon_mine.png",
+      "selectedIconPath": "./assets/icon_mine_green.png"
     }],
     "color": "#666",
     "selectedColor": "#42bd56",

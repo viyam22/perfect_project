@@ -40,8 +40,7 @@ Page({
 			isExplain: !that.data.isExplain
 		})
   },
-  share: function(){
-  },
+  
   getProgress: function() {
     var that = this;
     var getData = that.data.stepPercent * 100 > 100 ? 100 : that.data.stepPercent * 100;
@@ -54,7 +53,10 @@ Page({
       rotate2: rotate2,
     })
   },
-
+  onPullDownRefresh: function() {
+    console.log('fuck');
+    this.stopPullDownRefresh();
+  },
   onShow: function () {
     var that = this
     app.appInitData(function(globalData){
@@ -168,5 +170,12 @@ Page({
         })
       }
     });
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '完美邀您挑战百万俱乐部',
+      path: '/pages/home/home'
+    }
   }
 })

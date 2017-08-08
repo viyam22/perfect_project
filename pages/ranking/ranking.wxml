@@ -7,9 +7,9 @@
     <image class="head-img bgAttr" src="{{userInfo.avatarUrl}}"></image>
     <view class="data-box">
       <view class="name">{{userInfo.nickName}}</view>
-      <view class="ranking">第{{todayRinking.myRank}}名</view>
+      <view class="ranking">第{{rinkingData.myRank}}名</view>
     </view>
-    <view class="walk-count-green"><text class="walk-count">{{todayRinking.myRun}}</text>步</view>
+    <view class="walk-count-green"><text class="walk-count">{{rinkingData.myRun}}</text>步</view>
   </view>
 
   <view class="ranking-container">

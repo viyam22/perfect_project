@@ -47,5 +47,12 @@ Page({
         })
       }
     });
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '完美邀您挑战百万俱乐部',
+      path: '/pages/home/home'
+    }
   }
 })

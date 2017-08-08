@@ -30,6 +30,7 @@
 .btn-share {
   width: 158rpx;
   margin-right: 19rpx;
+  padding: 0;
 }
 .btn-sign {
   width: 148rpx;

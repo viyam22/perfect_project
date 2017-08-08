@@ -229,6 +229,39 @@ Page({
 
   postUserData: function() {
     var that = this;
+    if (!that.data.inputName) {
+      alert('请填写姓名！')
+      return;
+    }
+    if (!that.data.inputWork) {
+      alert('请填写工作类型！')
+      return;
+    }
+    if (!that.data.inputPhone) {
+      alert('请填写电话！')
+      return;
+    }
+    if (!that.data.inputAddress) {
+      alert('请填写详细地址！')
+      return;
+    }
+    if (!that.data.inputAge) {
+      alert('请填写年龄！')
+      return;
+    }
+    if (!that.data.areaInfo.p) {
+      alert('请选择所在省份！')
+      return;
+    }
+    if (!that.data.areaInfo.c) {
+      alert('请选择所在城市！')
+      return;
+    }
+    if (!that.data.areaInfo.a) {
+      alert('请选择所在地区！')
+      return;
+    }
+
     wx.request({
       url: 'https://wm.hengdikeji.com/api/v1/addres',
       method: 'POST',

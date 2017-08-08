@@ -24,7 +24,7 @@
       <text class="copy-address">{{address}}</text>
     </view>
   </view>
-  <view class="btn-save" bindtap="postUserData">保存</view>
+  <view class="btn-save" bindtap="postUserData">{{buttonTip}}</view>
 </view>
 
 <!--<view class="weui-cells__title">日期选择器</view>

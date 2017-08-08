@@ -18,12 +18,7 @@ Page({
     })
   },
 
-  onPullDownRefresh: function() {
-
-  },
-
   selectTag: function(e) {
-    console.log('!!____---rinkingData', app.globalData.totalRinking)
     var that = this;
     if (e.target.dataset.index == 0) {
       that.setData({
@@ -38,7 +33,6 @@ Page({
         tagTotalClass: 'tag-green',
         rinkingData: app.globalData.totalRinking,
       })
-      console.log('rinkingData', rinkingData)
     }
   },
 

@@ -12,6 +12,6 @@ Page({
     })
   },
   onPullDownRefresh: function() {
-
+    console.log('fuck');
   }
 })

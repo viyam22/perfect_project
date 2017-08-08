@@ -10,7 +10,7 @@
       <view class="userinfo-sign">早上好~</view>
       <view class="userinfo-nickname">{{userInfo.nickName}}</view>
     </view>
-    <view class="btn-share btn" bindtap="share">邀请好友+{{pointData.sharePoint}}</view>
+    <button class="btn-share btn" open-type="share">邀请好友+{{pointData.sharePoint}}</button>
     <view class="btn-sign {{signData.signClass}}" bindtap="{{signData.signFun}}">{{signData.signTip}}</view>
   </view>
 
