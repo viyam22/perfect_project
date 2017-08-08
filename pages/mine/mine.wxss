@@ -12,7 +12,7 @@
 .arrow-right {
   width: 18rpx;
   height: 34rpx;
-  background-image: url('../../assets/arrow_right.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/arrow_right.png');
   float: right;
   margin-top: 35rpx;
 }
