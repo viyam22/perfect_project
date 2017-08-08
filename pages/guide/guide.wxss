@@ -6,12 +6,12 @@ page {
   height: 100%;
 }
 .join {
-  background-image: url('../../assets/first_bg.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/first_bg.png');
   width: 100%;
   height: 100%;
 }
 .join-btn {
-  background-image: url('../../assets/btn_ijoin.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/btn_ijoin.png');
   width: 370rpx;
   height: 77rpx;
   position: absolute;
@@ -20,7 +20,7 @@ page {
   top: 930rpx;
 }
 .mask-tip {
-  background-image: url('../../assets/guide.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/guide.png');
   width: 602rpx;
   height: 764rpx;
   position: absolute;
@@ -28,7 +28,7 @@ page {
   top: 84rpx;
 }
 .mask-btn {
-  background-image: url('../../assets/btn_ikonw.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/btn_ikonw.png');
   width: 400rpx;
   height: 90rpx;
   position: absolute;

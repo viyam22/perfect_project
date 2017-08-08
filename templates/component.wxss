@@ -41,7 +41,7 @@
 
 
 .icon-explain {
-  background-image: url('../../assets/explain.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/explain.png');
   width: 97rpx;
   height: 78rpx;
   position: absolute;
@@ -58,7 +58,7 @@
   left: 0;
 }
 .explain-img {
-  background-image: url('../../assets/explain_img.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/explain_img.png');
   width: 651rpx;
   height: 996rpx;
   position: absolute;
@@ -66,7 +66,7 @@
   top: 16rpx;
 }
 .explain-close {
-  background-image: url('../../assets/btn_close0.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/btn_close0.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -79,7 +79,7 @@
 }
 
 .banner {
-  background-image: url('../../assets/banner_home.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/assets/banner_home.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
