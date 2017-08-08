@@ -181,7 +181,7 @@
 ** 兑换积分弹窗
 */
 .exchange-tip {
-  background-image: url('../../assets/exchange_bg.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/exchange_bg.png');
   position: relative;
   top: 129rpx;
   left: 50%;
@@ -190,7 +190,7 @@
   height: 820rpx;
 }
 .exchange-close {
-  background-image: url('../../assets/btn_close1.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/btn_close1.png');
   position: absolute;
   right: 23rpx;
   width: 62rpx;
@@ -213,7 +213,7 @@
   color: #ff6f00;
 }
 .exchange-btn {
-  background-image: url('../../assets/btn-certain.png');
+  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/btn-certain.png');
   position: absolute;
   bottom: 53rpx;
   left: 50%;

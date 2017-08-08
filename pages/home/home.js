@@ -54,7 +54,10 @@ Page({
       rotate2: rotate2,
     })
   },
-
+  onPullDownRefresh: function() {
+    console.log('fuck');
+    this.stopPullDownRefresh();
+  },
   onShow: function () {
     var that = this
     app.appInitData(function(globalData){
