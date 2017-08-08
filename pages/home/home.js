@@ -28,6 +28,7 @@ Page({
       canExchangePoint: 0,  //可以兑换多少积分
     },
     exchangeClass: 'canNotExchange',   //兑换积分按钮样式
+    myRink: 0,  //我的排名
   },
   // isExplain: header.explainTipToggle,
   getExchangeClass: function() {
@@ -40,7 +41,6 @@ Page({
 		})
   },
   share: function(){
-    console.log('00000000000')
   },
   getProgress: function() {
     var that = this;
@@ -57,8 +57,12 @@ Page({
 
   onLoad: function () {
     var that = this
+    console.log('~~~~~~home.js', app.globalData)
+    that.setData({
+      myRink: app.globalData.todayRinking.myRank,
+    })
     app.getUserInfo(function(userInfo){
-      console.log('userInfo:', userInfo)
+      console.log('**************userInfo:', userInfo)
       that.setData({
         userInfo:userInfo,
       })
@@ -130,7 +134,7 @@ Page({
       })
     that.getProgress();
     console.log('-------------', data.created_at.date !== data.updated_at.date)
-    if (data.created_at.date !== data.updated_at.date) {
+    if (data.created_at.date === data.updated_at.date) {
       wx.navigateTo({
         url: '../guide/guide'
       })

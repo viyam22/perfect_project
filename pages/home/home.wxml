@@ -33,7 +33,7 @@
     <view class="count-box">
       <view class="count-title">今日步数</view>
       <view class="count-data">{{pointData.todayStep}}</view>
-      <view class="count-ranking">第16名</view>
+      <view class="count-ranking">第{{myRink}}名</view>
     </view>
     <view class="count-btn {{exchangeClass}}" bindtap="{{pointData.isExchangeFun}}">兑换积分</view>
     <text class="count-tip" wx:if="{{pointData.goOnRun > 0}}">还差{{pointData.goOnRun}}步，即可兑换积分</text>

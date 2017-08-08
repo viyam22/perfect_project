@@ -107,13 +107,15 @@ App({
 
   getUserInfo: function(cb) {
     var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
+    if (that.globalData.userInfo) {
+      typeof cb == "function" && cb(that.globalData.userInfo)
+      console.log('#### 有啦！！！！')
     } else {
       //调用登录接口
       wx.getUserInfo({
         withCredentials: false,
         success: function(res) {
+          console.log('#### -------  没有的 ！！！！')
           that.globalData.userInfo = res.userInfo;
           that.getOpenid();
           typeof cb == "function" && cb(that.globalData.userInfo)
@@ -147,6 +149,7 @@ App({
   },
 
   getUserData: function(data){
+    console.log('##############')
     var that = this;
     wx.request({
       url: 'https://wm.hengdikeji.com/api/v1/user',

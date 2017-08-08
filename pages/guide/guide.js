@@ -20,7 +20,7 @@ Page({
   },
   toHome: function() {
     console.log('----')
-    wx.navigateTo({
+    wx.navigateBack({
       url: '../home/home'
     })
   },

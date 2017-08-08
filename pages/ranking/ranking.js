@@ -10,6 +10,7 @@ Page({
 
   onLoad: function () {
     var that = this;
+    console.log('~~~~~~', app.globalData)
     that.setData({
       userInfo: app.globalData.userInfo,
       todayRinking: app.globalData.todayRinking,
