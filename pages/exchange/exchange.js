@@ -41,7 +41,7 @@ Page({
     });
   },
   onPullDownRefresh: function() {
-    console.log('fuck');
+    app.totalRinking(wx.stopPullDownRefresh);
   },
   maskPlay: function({target: {dataset}}) {
     var that = this;

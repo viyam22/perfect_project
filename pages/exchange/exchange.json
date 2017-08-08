@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "兑换积分"
+    "navigationBarTitleText": "兑换积分",
+    "enablePullDownRefresh": true
 }
