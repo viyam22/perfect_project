@@ -1,4 +1,5 @@
 //app.js
+var aldstat = require("./utils/ald-stat.js")
 App({
   onLaunch: function(res) {
     var that = this;
@@ -24,8 +25,6 @@ App({
       });
     });
   },
-
-  
 
   exchangeData: function(cb) {
     var that = this;
