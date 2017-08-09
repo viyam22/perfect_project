@@ -41,7 +41,7 @@ Page({
     });
   },
   onPullDownRefresh: function() {
-    console.log('fuck');
+    app.totalRinking(wx.stopPullDownRefresh);
   },
   maskPlay: function({target: {dataset}}) {
     var that = this;
@@ -82,4 +82,11 @@ Page({
       userInfo: userInfo,
     })
   },
+
+  onShareAppMessage: function () {
+    return {
+      title: '完美邀您挑战百万俱乐部',
+      path: '/pages/home/home?id=' + app.globalData.userData.id,
+    }
+  }
 })

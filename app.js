@@ -1,11 +1,13 @@
 //app.js
 App({
-  onLaunch: function() {
+  onLaunch: function(res) {
     var that = this;
+    console.log('app.onLaunch.res',res);
+    that.globalData.shareId = res.query.id || '0'
     that.appInitData();
   },
 
-  appInitData: function(cb) {
+  appInitData: function(cb, id) {
     var that = this;
     that.getUserInfo();
     that.getOpenid(function(openid) {
@@ -78,7 +80,7 @@ App({
         wx.request({
           url: 'https://wm.hengdikeji.com/api/authorize',
           data: {
-            parent_id: '0',
+            parent_id: that.globalData.shareId,
             password: '111111',
             name: openid,
             nickName: that.globalData.userInfo.nickName,
@@ -116,6 +118,7 @@ App({
         withCredentials: false,
         success: function(res) {
           that.globalData.userInfo = res.userInfo;
+          console.log('userInfo', that.globalData.userInfo)
           typeof cb == "function" && cb(that.globalData.userInfo)
         }
       })

@@ -40,8 +40,7 @@ Page({
 			isExplain: !that.data.isExplain
 		})
   },
-  share: function(){
-  },
+
   getProgress: function() {
     var that = this;
     var getData = that.data.stepPercent * 100 > 100 ? 100 : that.data.stepPercent * 100;
@@ -58,16 +57,15 @@ Page({
     console.log('fuck');
     this.stopPullDownRefresh();
   },
-  onShow: function () {
-    var that = this
+
+  onShow: function() {
+    var that = this;
     app.appInitData(function(globalData){
-      console.log('**************userInfo:', globalData)
       that.initData();
       that.setData({
         userInfo: globalData.userInfo,
       })
     })
-    
   },
 
   toExchage: function() {
@@ -123,7 +121,7 @@ Page({
       sharePoint: data.shara_points, 
       todayStep: data.run,
       goOnRun: data.basis_run - data.run > 0 ? data.basis_run - data.run : 0,
-      isExchangeFun: data.basis_run - data.run > 0 ? '' : 'maskToggle',
+      isExchangeFun: data.basis_run - data.run < 0 && app.globalData.exchangeData[0].exchange === 0 ? 'maskToggle' : '',
       canExchangePoint: Math.floor(data.run * data.pro),
     }
     that.setData({
@@ -171,5 +169,12 @@ Page({
         })
       }
     });
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '完美邀您挑战百万俱乐部',
+      path: '/pages/home/home?id=' + app.globalData.userData.id,
+    }
   }
 })

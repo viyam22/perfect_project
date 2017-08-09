@@ -43,12 +43,16 @@
   float: right;
   margin: 35rpx 30rpx 0 0;
 }
-.input-box {
+.input-box, .picker-box {
   height: 85rpx;
   position: absolute;
   left: 174rpx;
   top: 0;
   width: 512rpx;
+}
+.picker {
+  height: 85rpx;
+  line-height: 85rpx;
 }
 .input-text {
   color: #c7c6cc;

@@ -29,7 +29,7 @@ Page({
 
   toMyDataPage: function() {
     wx.navigateTo({
-      url: '../myData/myData'
+      url: '../myData/myData?id=1234'
     })
   },
 
@@ -47,5 +47,12 @@ Page({
         })
       }
     });
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '完美邀您挑战百万俱乐部',
+      path: '/pages/home/home?id=' + app.globalData.userData.id,
+    }
   }
 })
