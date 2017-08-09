@@ -113,7 +113,7 @@ Page({
     } else {
       var signData = {
         signClass: 'signed',
-        signTip: '已签到',
+        signTip: '已签到' + data.checkData + '天',
         signFun: '',
       }
     }
@@ -157,11 +157,11 @@ Page({
       header: {
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
-      success: function(res) {
-        console.log('goToSign:', res);
+      success: function({data}) {
+        console.log('goToSign:', data);
         var signData = {
           signClass: 'signed',
-          signTip: '已签到',
+          signTip: '已签到' + data.checkData + '天',
           signFun: '',
         };
         that.setData({

@@ -16,6 +16,7 @@ Page({
 
   toExchange: function() {
     var that = this;
+    console.log('eeee', that.data.exchangeData);
     wx.request({
       url: 'https://wm.hengdikeji.com/api/v1/toExchange',
       method: 'POST',
@@ -28,6 +29,7 @@ Page({
       success: function({data}) {
         console.log('toExchage:', data);
         if (data.code === 1) {
+          that.showToast(data.msg);
           var exchangeData = that.data.exchangeData;
           exchangeData[that.data.exchangeIndex].exchange = 1;
           that.setData({
@@ -35,17 +37,41 @@ Page({
             isMask: !that.data.isMask,
           })
         } else {
-          alert(data.msg);
+          that.showModat(data.msg);
         }
       }
     });
   },
-  onPullDownRefresh: function() {
-    app.totalRinking(wx.stopPullDownRefresh);
+
+  showToast: function(title) {
+    wx.showToast({
+      title: title,
+    })
   },
+
+  showModat: function(content) {
+    var that = this;
+    wx.showModal({
+      title: '错误提示',
+      content: content,
+      cancelText: '取消',
+      confirmText: '确定',
+      success: function(res) {
+        if (res.confirm) {
+          that.setData({
+            isMask: !that.data.isMask,
+          })
+        } else if (res.cancel) {
+          that.setData({
+            isMask: !that.data.isMask,
+          })
+        }
+      }
+    })
+  },
+  
   maskPlay: function({target: {dataset}}) {
     var that = this;
-    console.log('eeee', dataset);
     that.setData({
       isMask: !that.data.isMask,
       exchangeId: dataset.id || '',
@@ -68,7 +94,9 @@ Page({
     var that = this;
     var exchangeData = app.globalData.exchangeData;
     for(var i = 0, len = exchangeData.length; i < len; i++) {
-      exchangeData[i].exchange = exchangeData[i].run >= app.globalData.userData.basis_run && exchangeData[i].exchange === 0 ? 0 : 1;
+      if (exchangeData[i].exchange === 0) {
+        exchangeData[i].exchange = exchangeData[i].run >= app.globalData.userData.basis_run ? 0 : -1;
+      }
     }
     var userInfo = {
       nickName: app.globalData.userInfo.nickName,

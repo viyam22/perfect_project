@@ -38,8 +38,10 @@ Page({
     inputAge: '',
     inputWork: '',
     inputSex: '',
+    inputP: '',
+    inputA: '',
+    inputC: '',
     accessTokenData: {},
-    initData: {},
     addressTip: 'address',
     buttonTip: '',
     buttonFun: '',
@@ -185,6 +187,9 @@ Page({
     }
     that.setData({
       areaInfo: areaInfo,
+      inputP: that.data.provinces[value[0]].name,
+      inputA: that.data.areas[value[2]].name,
+      inputC: that.data.citys[value[1]].name,
       areaName: that.data.provinces[value[0]].name + ' ' + that.data.citys[value[1]].name + ' ' + that.data.areas[value[2]].name,
       areaInfoColor: '#333'
     })
@@ -238,6 +243,27 @@ Page({
     })
   },
 
+  showModat: function(content) {
+    var that = this;
+    wx.showModal({
+      title: '错误提示',
+      content: content,
+      cancelText: '取消',
+      confirmText: '确定',
+      success: function(res) {
+        if (res.confirm) {
+          that.setData({
+            isMask: !that.data.isMask,
+          })
+        } else if (res.cancel) {
+          that.setData({
+            isMask: !that.data.isMask,
+          })
+        }
+      }
+    })
+  },
+
   postUserData: function() {
     var that = this;
     // if (!that.data.inputName && !that.data.initData.name) {
@@ -277,31 +303,41 @@ Page({
       method: 'POST',
       data: {
         gender: that.data.sexIndex + 1,
-        name: that.data.inputName || that.data.initData.name,
-        jobType: that.data.inputWork || that.data.initData.jobType,
-        mobile: that.data.inputPhone || that.data.initData.mobile,
-        address: that.data.inputAddress || that.data.initData.address,
-        age: that.data.inputAge || that.data.initData.age,
-        p: that.data.areaInfo.p || that.data.initData.p,
-        c: that.data.areaInfo.c || that.data.initData.p,
-        a: that.data.areaInfo.a ||　that.data.initData.p,
+        name: that.data.inputName,
+        jobType: that.data.inputWork,
+        mobile: that.data.inputPhone,
+        address: that.data.address,
+        age: that.data.inputAge,
+        p: that.data.areaInfo.p,
+        c: that.data.areaInfo.c,
+        a: that.data.areaInfo.a,
       },
       header: {
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
       success: function(res) {
-        that.showToast('保存成功！')
-        console.log('postUserData', res);
-        that.setData({
-          buttonTip: '修改信息',
-          buttonFun: 'modifyInfo',
-          selectFun: '',
-          isNotWrite: true,
-        })
         if (res.data.code === 0) {
-          that.showToast(res.data.msg);
+          that.showModat(res.data.msg);
+        } else {
+          that.showToast('保存成功！')
+          console.log('postUserData', res);
+          that.setData({
+            buttonTip: '修改信息',
+            buttonFun: 'modifyInfo',
+            selectFun: '',
+            isNotWrite: true,
+          })
+          setTimeout(function() {
+            that.toMinePage();
+          }, 2000)
         }
       }
+    })
+  },
+
+  toMinePage: function() {
+    wx.navigateBack({
+      url: '../mine/mine'
     })
   },
 
@@ -331,7 +367,8 @@ Page({
     };
     if (e.target.dataset.type === 'adress') {
       that.setData({
-        inputAddress: e.detail.value,
+        // inputAddress: e.detail.value,
+        address: e.detail.value,
       })
     };
   },
@@ -365,8 +402,18 @@ Page({
           })
           return;
         }
+        var areaInfo = {
+          p: data.p,
+          c: data.c,
+          a: data.a,
+        }
         that.setData({
-          initData: data,
+          inputName: data.name,
+          inputAddress: data.address,
+          inputAge: data.age,
+          inputPhone: data.mobile,
+          inputWork: data.jobType,
+          areaInfo: areaInfo,
           areaName: data.p + ' ' + data.c + ' ' + data.a,
           areaInfoColor: data.p || data.c || data.a ? '#333' : '#c7c6cc',
           address: data.address,
