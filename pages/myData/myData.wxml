@@ -1,7 +1,7 @@
 <view>
   <view class="input-container">
     <view class="input-lists">姓名
-      <input class="input-box" disabled="{{isNotWrite}}" placeholder="姓名" placeholder-class="input-text" focus="true" value="{{initData.name}}" bindblur="getInputVal" data-type="name"></input>
+      <input class="input-box" disabled="{{isNotWrite}}" placeholder="姓名" placeholder-class="input-text" value="{{initData.name}}" bindblur="getInputVal" data-type="name"></input>
     </view>
     <view class="input-lists">性别
       <picker class="picker-box" bindchange="bindPickerChange" value="{{sexIndex}}" range="{{sexArray}}" disabled="{{isNotWrite}}">

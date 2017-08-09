@@ -48,6 +48,7 @@
   position: absolute;
   left: 174rpx;
   top: 0;
+  color: #000;
   width: 512rpx;
 }
 .picker {

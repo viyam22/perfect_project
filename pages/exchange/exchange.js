@@ -40,9 +40,7 @@ Page({
       }
     });
   },
-  onPullDownRefresh: function() {
-    app.totalRinking(wx.stopPullDownRefresh);
-  },
+  
   maskPlay: function({target: {dataset}}) {
     var that = this;
     console.log('eeee', dataset);
