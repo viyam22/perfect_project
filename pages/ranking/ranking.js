@@ -8,13 +8,14 @@ Page({
     todayRinking: {},
     totalRinking: {},
     todayPage: null,
+    todayLockPage: null,
     totalPage: null,
+    totalLockPage: null,
     tagIndex: 0,
   },
 
   onShow: function () {
     var that = this;
-    console.log('~~~~~~', app.globalData)
     that.setData({
       userInfo: app.globalData.userInfo,
       todayRinking: app.globalData.todayRinking,
@@ -53,13 +54,18 @@ Page({
     }
   },
 
-  onPullDownRefresh: function() {
+  onReachBottom: function() {
     var that = this;
     var data = app.globalData.accessTokenData;
-    if (that.data.tagIndex === 0) {
+    if (that.data.tagIndex === 0 && that.data.todayPage !== that.data.todayLockPage) {
+      that.showToast('正在加载中', 'loading')
       if (!that.data.todayPage) {
-        wx.stopPullDownRefresh();
-        that.showToast('已无更多！')
+        setTimeout(function() {
+          that.showToast('已加载全部', 'success')
+        }, 500)
+        that.setData({
+          todayLockPage: that.data.todayPage
+        })
         return;
       }
       wx.request({
@@ -71,7 +77,6 @@ Page({
           page: that.data.todayPage,
         },
         success: function({data}) {
-          wx.stopPullDownRefresh();
           var todayRinking = that.data.todayRinking;
           for(var i = 0, len = data.data.length; i < len; i++){
             todayRinking.data.push(data.data[i]);
@@ -80,15 +85,20 @@ Page({
             todayRinking: todayRinking,
             rinkingData: todayRinking,
             todayPage: data.next_page_url,
+            todayLockPage: that.data.todayPage,
           })
-          wx.stopPullDownRefresh;
           return;
         }
       });
-    } else if(that.data.tagIndex === 1) {
+    } else if(that.data.tagIndex === 1 && that.data.totalPage !== that.data.totalLockPage) {
+      that.showToast('正在加载中', 'loading')
       if (!that.data.totalPage) {
-        wx.stopPullDownRefresh();
-        that.showToast('已无更多！')
+        setTimeout(function() {
+          that.showToast('已加载全部', 'success')
+        }, 500)
+        that.setData({
+          totalLockPage: that.data.totalPage
+        })
         return;
       }
       wx.request({
@@ -100,16 +110,15 @@ Page({
           page: that.data.totalPage,
         },
         success: function({data}) {
-          wx.stopPullDownRefresh();
           var totalRinking = that.data.totalRinking;
           for(var i = 0, len = data.data.length; i < len; i++){
             totalRinking.data.push(data.data[i]);
           }
-          console.log('+++*******&&&&&&&&', totalRinking);
           that.setData({
             totalRinking: totalRinking,
             rinkingData: totalRinking,
-            totalPage: data.next_page_url
+            totalPage: data.next_page_url,
+            totalLockPage: that.data.totalPage,
           })
           return;
         }
@@ -117,9 +126,10 @@ Page({
     }
   },
 
-  showToast: function(title) {
+  showToast: function(title, type) {
     wx.showToast({
       title: title,
+      icon: type,
     })
   },
 })

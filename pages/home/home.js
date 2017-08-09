@@ -53,10 +53,6 @@ Page({
       rotate2: rotate2,
     })
   },
-  onPullDownRefresh: function() {
-    console.log('fuck');
-    this.stopPullDownRefresh();
-  },
 
   onShow: function() {
     var that = this;
@@ -80,7 +76,6 @@ Page({
         id: app.globalData.exchangeData[0].id,
       },
       success: function({data}) {
-        console.log('toExchage:', data);
         if (data.code === 1) {
           that.maskToggle();
           that.setData({
@@ -103,7 +98,6 @@ Page({
   initData: function() {
     var that = this;
     var data = app.globalData.userData;
-    console.log('getUserData:', data);
     if (data.ischeck === 0) {
       var signData = {
         signClass: 'sign',
@@ -113,7 +107,7 @@ Page({
     } else {
       var signData = {
         signClass: 'signed',
-        signTip: '已签到',
+        signTip: '已签到' + data.checkData + '天',
         signFun: '',
       }
     }
@@ -132,7 +126,6 @@ Page({
         myRink: app.globalData.todayRinking.myRank,
       })
     that.getProgress();
-    console.log('-------------', data.created_at.date !== data.updated_at.date)
     if (data.created_at.date === data.updated_at.date) {
       wx.navigateTo({
         url: '../guide/guide'
@@ -157,11 +150,10 @@ Page({
       header: {
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
-      success: function(res) {
-        console.log('goToSign:', res);
+      success: function({data}) {
         var signData = {
           signClass: 'signed',
-          signTip: '已签到',
+          signTip: '已签到' + data.checkData + '天',
           signFun: '',
         };
         that.setData({

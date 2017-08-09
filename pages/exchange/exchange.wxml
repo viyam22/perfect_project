@@ -9,7 +9,8 @@
       <view class="weekday">{{item.week}}</view>
       <view class="count">{{item.run}}步</view>
       <view class="btn-exchange exchange" bindtap="maskPlay" data-index="{{index}}" data-run="{{item.run}}" data-id="{{item.id}}" wx:if="{{item.exchange === 0}}">兑换成积分</view>
-      <view class="btn-exchange exchanged" wx:if="{{item.exchange === 1}}">已兑换</view>      
+      <view class="btn-exchange exchanged" wx:if="{{item.exchange === 1}}">已兑换</view> 
+      <view class="btn-exchange exchanged" wx:if="{{item.exchange === -1}}">不可兑换</view>       
     </view>
     <!--<view class="walk-box">
       <view class="weekday">星期四</view>

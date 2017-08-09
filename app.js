@@ -2,7 +2,6 @@
 App({
   onLaunch: function(res) {
     var that = this;
-    console.log('app.onLaunch.res',res);
     that.globalData.shareId = res.query.id || '0'
     that.appInitData();
   },
@@ -38,7 +37,6 @@ App({
       },
       success: function({data}) {
         that.globalData.exchangeData = data.reverse();
-        console.log('exchangeData----', that.globalData.exchangeData);
         typeof cb == "function" && cb(that.globalData.exchangeData)
       }
     })
@@ -73,7 +71,6 @@ App({
     try {
       var saveTime = wx.getStorageSync('saveTime');
       if (saveTime && saveTime > myDate + 120) {
-          console.log('value', saveTime)
           that.globalData.accessTokenData = wx.getStorageSync('access_token');
           typeof cb == "function" && cb(wx.getStorageSync('access_token'))
       } else {
@@ -92,7 +89,6 @@ App({
           },
           method: 'POST',
           success: function({data}) {
-            console.log('access_token:', data);
             that.globalData.accessTokenData = data;
             try {
                 wx.setStorageSync('access_token', data);
@@ -118,7 +114,6 @@ App({
         withCredentials: false,
         success: function(res) {
           that.globalData.userInfo = res.userInfo;
-          console.log('userInfo', that.globalData.userInfo)
           typeof cb == "function" && cb(that.globalData.userInfo)
         }
       })
@@ -130,7 +125,6 @@ App({
     var data = that.globalData.accessTokenData;
     wx.getWeRunData({
       success(res) {
-        console.log('getWxRunData:', res);
         const encryptedData = res.encryptedData
         wx.request({
           url: 'https://wm.hengdikeji.com/api/v1/movement',
@@ -143,7 +137,6 @@ App({
             Authorization: data.token_type + ' ' + data.access_token,
           },
           success: function(res) {
-            console.log('movement:', res);
           }
         })
       }
@@ -160,7 +153,6 @@ App({
       },
       success: function({data}) {
         that.globalData.userData = data;
-        console.log('getUserData', data);
         typeof cb == "function" && cb(that.globalData.userData)
       }
     });
@@ -176,7 +168,6 @@ App({
       },
       success: function({data}) {
         that.globalData.todayRinking = data;
-        console.log('todayRinking', data);
         typeof cb == "function" && cb(that.globalData.todayRinking)
       }
     });
@@ -192,7 +183,6 @@ App({
       },
       success: function({data}) {
         that.globalData.totalRinking = data;
-        console.log('=====totalRinking', data);
         typeof cb == "function" && cb(that.globalData.todayRinking)
       }
     });

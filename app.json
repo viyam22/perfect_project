@@ -5,9 +5,7 @@
     "pages/ranking/ranking",
     "pages/mine/mine",
     "pages/exchange/exchange",
-    "pages/guide/guide",
-    "pages/logs/logs"
-    
+    "pages/guide/guide"
   ],
   "window":{
     "backgroundTextStyle":"light",
