@@ -1,39 +1,42 @@
 <!--index.wxml-->
 <view class="">
-  <import src="../../templates/component.wxml"/>
-  <template is="banner"/>
-  <!--<template is="explain" data="{{isExplain}}"/>-->
-  <view class="count-box">
-    <image class="head-img bgAttr" src="{{userInfo.avatarUrl}}"></image>
-    <view class="data-box">
-      <view class="name">{{userInfo.nickName}}</view>
-      <view class="ranking">第{{rinkingData.myRank}}名</view>
-    </view>
-    <view class="walk-count-green"><text class="walk-count">{{rinkingData.myRun}}</text>步</view>
-  </view>
-
-  <view class="ranking-container">
-    <view class="tag-day tag {{tagDayClass}}" bindtap="selectTag" data-index="0">每日步数排行</view>
-    <view class="tag-total tag {{tagTotalClass}}" bindtap="selectTag" data-index="1">总步数排行</view>
-
-    <view class="count-box border-bottom" wx:for="{{rinkingData.data}}" wx:key="{{item.ranking}}">
-      <text class="ranking-num">{{item.ranking}}</text>
-      <image class="head-img bgAttr" src="{{item.avatar}}"></image>
+  <!--<scroll-view scroll-y style="" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">-->
+  <!--<scroll-view scroll-y="true" style="height: 100%;" bindscrolltolower="loadMore">-->
+    <import src="../../templates/component.wxml"/>
+    <template is="banner"/>
+    
+    <view class="count-box">
+      <image class="head-img bgAttr" src="{{userInfo.avatarUrl}}"></image>
       <view class="data-box">
-        <view class="fri-name">{{item.nickName}}</view>
+        <view class="name">{{userInfo.nickName}}</view>
+        <view class="ranking">第{{rinkingData.myRank}}名</view>
       </view>
-      <view class="walk-count-orange" wx:if="{{item.ranking === 1}}"><text class="walk-count">{{item.run}}</text>步</view>
-      <view class="walk-count-green"  wx:if="{{item.ranking !== 1}}"><text class="walk-count">{{item.run}}</text>步</view>
+      <view class="walk-count-green"><text class="walk-count">{{rinkingData.myRun}}</text>步</view>
     </view>
+    
+    <view class="ranking-container">
+      <view class="tag-day tag {{tagDayClass}}" bindtap="selectTag" data-index="0">每日步数排行</view>
+      <view class="tag-total tag {{tagTotalClass}}" bindtap="selectTag" data-index="1">总步数排行</view>
 
-    <!--<view class="count-box border-bottom">
-      <text class="ranking-num">2</text>
-      <image class="head-img bgAttr"></image>
-      <view class="data-box">
-        <view class="fri-name">mumu</view>
+      
+      <view class="count-box border-bottom" wx:for="{{rinkingData.data}}" wx:key="{{item.ranking}}">
+        <text class="ranking-num">{{item.ranking}}</text>
+        <image class="head-img bgAttr" src="{{item.avatar}}"></image>
+        <view class="data-box">
+          <view class="fri-name">{{item.nickName}}</view>
+        </view>
+        <view class="walk-count-orange" wx:if="{{item.ranking === 1}}"><text class="walk-count">{{item.run}}</text>步</view>
+        <view class="walk-count-green"  wx:if="{{item.ranking !== 1}}"><text class="walk-count">{{item.run}}</text>步</view>
       </view>
-      <view class="walk-count-green"><text class="walk-count">1787</text>步</view>
-    </view>-->
-  </view>
-  
+
+      <!--<view class="count-box border-bottom">
+        <text class="ranking-num">2</text>
+        <image class="head-img bgAttr"></image>
+        <view class="data-box">
+          <view class="fri-name">mumu</view>
+        </view>
+        <view class="walk-count-green"><text class="walk-count">1787</text>步</view>
+      </view>-->
+    </view>
+  <!--</scroll-view>-->
 </view>

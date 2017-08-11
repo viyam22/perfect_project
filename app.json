@@ -5,9 +5,8 @@
     "pages/ranking/ranking",
     "pages/mine/mine",
     "pages/exchange/exchange",
-    "pages/guide/guide",
-    "pages/logs/logs"
-    
+    "pages/friends/friends",
+    "pages/guide/guide"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -27,10 +26,10 @@
       "iconPath": "./assets/icon_ranking.png",
       "selectedIconPath": "./assets/icon_ranking_green.png"
     },{
-      "pagePath": "pages/exchange/exchange",
-      "text": "兑换",
-      "iconPath": "./assets/icon_exchange.png",
-      "selectedIconPath": "./assets/icon_exchange_green.png"
+      "pagePath": "pages/friends/friends",
+      "text": "朋友圈",
+      "iconPath": "./assets/users.png",
+      "selectedIconPath": "./assets/users_green.png"
     },{
       "pagePath": "pages/mine/mine",
       "text": "我的",

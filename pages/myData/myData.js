@@ -37,9 +37,12 @@ Page({
     inputAddress: '',
     inputAge: '',
     inputWork: '',
+    inputVip: '',
     inputSex: '',
+    inputP: '',
+    inputA: '',
+    inputC: '',
     accessTokenData: {},
-    initData: {},
     addressTip: 'address',
     buttonTip: '',
     buttonFun: '',
@@ -51,9 +54,6 @@ Page({
  /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(res) {
-    console.log('!!!!!!!!!!!!!!!!!!!!', res)
-  },
   onShow: function (options) {
     var that = this;
     app.appInitData(function(globalData){
@@ -76,7 +76,6 @@ Page({
   },
 
   bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       sexIndex: e.detail.value
     })
@@ -84,7 +83,6 @@ Page({
 
   // 显示
   showMenuTap: function (e) {
-    console.log('selectState')
     //获取点击菜单的类型 1点击状态 2点击时间 
     var menuType = e.currentTarget.dataset.type
     // 如果当前已经显示，再次点击时隐藏
@@ -114,22 +112,18 @@ Page({
       animationData: this.animation.export(),
       isVisible: isShow
     })
-    console.log(that.data)
   },
   // 选择状态按钮
   selectState: function (e) {
-    console.log('selectState1')
     this.startAnimation(false, -200)
     var status = e.currentTarget.dataset.status
     this.setData({
       status: status
     })
-    console.log(this.data)
 
   },
   // 日志选择
   bindDateChange: function (e) {
-    console.log(e)
     if (e.currentTarget.dataset.type == 1) {
       this.setData({
         begin: e.detail.value
@@ -155,7 +149,6 @@ Page({
   },
   // 执行动画
   startAddressAnimation: function (isShow) {
-    console.log(isShow)
     var that = this
     if (isShow) {
       that.animation.translateY(0 + 'vh').step()
@@ -185,17 +178,18 @@ Page({
     }
     that.setData({
       areaInfo: areaInfo,
+      inputP: that.data.provinces[value[0]].name,
+      inputA: that.data.areas[value[2]].name,
+      inputC: that.data.citys[value[1]].name,
       areaName: that.data.provinces[value[0]].name + ' ' + that.data.citys[value[1]].name + ' ' + that.data.areas[value[2]].name,
       areaInfoColor: '#333'
     })
   },
   hideCitySelected: function (e) {
-    console.log(e)
     this.startAddressAnimation(false)
   },
   // 处理省市县联动逻辑
   cityChange: function (e) {
-    console.log(e)
     var value = e.detail.value
     var provinces = this.data.provinces
     var citys = this.data.citys
@@ -221,7 +215,6 @@ Page({
         value: [provinceNum, cityNum, countyNum]
       })
     }
-    console.log(this.data)
   },
 
   //复制input中的地址
@@ -238,77 +231,76 @@ Page({
     })
   },
 
+  showModat: function(content) {
+    var that = this;
+    wx.showModal({
+      title: '错误提示',
+      content: content,
+      cancelText: '取消',
+      confirmText: '确定',
+      success: function(res) {
+        if (res.confirm) {
+          that.setData({
+            isMask: !that.data.isMask,
+          })
+        } else if (res.cancel) {
+          that.setData({
+            isMask: !that.data.isMask,
+          })
+        }
+      }
+    })
+  },
+
   postUserData: function() {
     var that = this;
-    // if (!that.data.inputName && !that.data.initData.name) {
-    //   that.showToast('请填写姓名！')
-    //   return;
-    // }
-    // if (!that.data.inputWork && !that.data.initData.jobType) {
-    //   that.showToast('请填写工作类型！')
-    //   return;
-    // }
-    // if (!that.data.inputPhone && !that.data.initData.mobile) {
-    //   that.showToast('请填写电话！')
-    //   return;
-    // }
-    // if (!that.data.inputAddress && !that.data.initData.address) {
-    //   that.showToast('请填写详细地址！')
-    //   return;
-    // }
-    // if (!that.data.inputAge && !that.data.initData.age) {
-    //   that.showToast('请填写年龄！')
-    //   return;
-    // }
-    // if (!that.data.areaInfo.p && !that.data.initData.p) {
-    //   that.showToast('请选择所在省份！')
-    //   return;
-    // }
-    // if (!that.data.areaInfo.c && !that.data.initData.c) {
-    //   that.showToast('请选择所在城市！')
-    //   return;
-    // }
-    // if (!that.data.areaInfo.a && !that.data.initData.a) {
-    //   that.showToast('请选择所在地区！')
-    //   return;
-    // }
+   
     wx.request({
       url: 'https://wm.hengdikeji.com/api/v1/addres',
       method: 'POST',
       data: {
         gender: that.data.sexIndex + 1,
-        name: that.data.inputName || that.data.initData.name,
-        jobType: that.data.inputWork || that.data.initData.jobType,
-        mobile: that.data.inputPhone || that.data.initData.mobile,
-        address: that.data.inputAddress || that.data.initData.address,
-        age: that.data.inputAge || that.data.initData.age,
-        p: that.data.areaInfo.p || that.data.initData.p,
-        c: that.data.areaInfo.c || that.data.initData.p,
-        a: that.data.areaInfo.a ||　that.data.initData.p,
+        name: that.data.inputName,
+        jobType: that.data.inputWork,
+        mobile: that.data.inputPhone,
+        address: that.data.address,
+        age: that.data.inputAge,
+        p: that.data.areaInfo.p,
+        c: that.data.areaInfo.c,
+        a: that.data.areaInfo.a,
+        vip: that.data.inputVip
       },
       header: {
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
       success: function(res) {
-        that.showToast('保存成功！')
-        console.log('postUserData', res);
-        that.setData({
-          buttonTip: '修改信息',
-          buttonFun: 'modifyInfo',
-          selectFun: '',
-          isNotWrite: true,
-        })
         if (res.data.code === 0) {
-          that.showToast(res.data.msg);
+          that.showModat(res.data.msg);
+        } else {
+          that.showToast('保存成功！')
+          that.setData({
+            buttonTip: '修改信息',
+            buttonFun: 'modifyInfo',
+            selectFun: '',
+            isNotWrite: true,
+          })
+          setTimeout(function() {
+            that.toMinePage();
+          }, 2000)
         }
       }
+    })
+  },
+
+  toMinePage: function() {
+    wx.navigateBack({
+      url: '../mine/mine'
     })
   },
 
   getInputVal: function(e) {
     var that = this;
     var name = '', age = '', work = '', adress = '', phone = '';
-    console.log('eeeeeee', e);
     if (e.target.dataset.type === 'name') {
       that.setData({
         inputName: e.detail.value,
@@ -331,7 +323,12 @@ Page({
     };
     if (e.target.dataset.type === 'adress') {
       that.setData({
-        inputAddress: e.detail.value,
+        address: e.detail.value,
+      })
+    };
+    if (e.target.dataset.type === 'vip') {
+      that.setData({
+        inputVip: e.detail.value,
       })
     };
   },
@@ -354,7 +351,6 @@ Page({
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
       success: function({data}) {
-        console.log('getInputData', data);
         if (!data.name) {
           that.setData({
             sexIndex: data.gender ? data.gender - 1 : app.globalData.userInfo.gender - 1,
@@ -365,8 +361,19 @@ Page({
           })
           return;
         }
+        var areaInfo = {
+          p: data.p,
+          c: data.c,
+          a: data.a,
+        }
         that.setData({
-          initData: data,
+          inputName: data.name,
+          inputAddress: data.address,
+          inputAge: data.age,
+          inputPhone: data.mobile,
+          inputWork: data.jobType,
+          inputVip:data.vip,
+          areaInfo: areaInfo,
           areaName: data.p + ' ' + data.c + ' ' + data.a,
           areaInfoColor: data.p || data.c || data.a ? '#333' : '#c7c6cc',
           address: data.address,

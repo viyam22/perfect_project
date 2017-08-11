@@ -10,7 +10,6 @@ Page({
   },
   
   onShow: function () {
-    console.log('onLoad')
     var that = this;
     var userInfo = {
       nickName: app.globalData.userInfo.nickName,

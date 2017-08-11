@@ -48,6 +48,7 @@
   position: absolute;
   left: 174rpx;
   top: 0;
+  color: #000;
   width: 512rpx;
 }
 .picker {
@@ -207,4 +208,14 @@
   margin-left: 5rpx;
   margin-right: 5rpx;
   text-align: center;
+}
+.red{
+  color: red;
+  display: initial;
+  
+}
+.left{
+  display: block;
+  text-align: right;
+  width: 150rpx
 }
