@@ -37,6 +37,7 @@ Page({
     inputAddress: '',
     inputAge: '',
     inputWork: '',
+    inputVip: '',
     inputSex: '',
     inputP: '',
     inputA: '',
@@ -253,38 +254,7 @@ Page({
 
   postUserData: function() {
     var that = this;
-    // if (!that.data.inputName && !that.data.initData.name) {
-    //   that.showToast('请填写姓名！')
-    //   return;
-    // }
-    // if (!that.data.inputWork && !that.data.initData.jobType) {
-    //   that.showToast('请填写工作类型！')
-    //   return;
-    // }
-    // if (!that.data.inputPhone && !that.data.initData.mobile) {
-    //   that.showToast('请填写电话！')
-    //   return;
-    // }
-    // if (!that.data.inputAddress && !that.data.initData.address) {
-    //   that.showToast('请填写详细地址！')
-    //   return;
-    // }
-    // if (!that.data.inputAge && !that.data.initData.age) {
-    //   that.showToast('请填写年龄！')
-    //   return;
-    // }
-    // if (!that.data.areaInfo.p && !that.data.initData.p) {
-    //   that.showToast('请选择所在省份！')
-    //   return;
-    // }
-    // if (!that.data.areaInfo.c && !that.data.initData.c) {
-    //   that.showToast('请选择所在城市！')
-    //   return;
-    // }
-    // if (!that.data.areaInfo.a && !that.data.initData.a) {
-    //   that.showToast('请选择所在地区！')
-    //   return;
-    // }
+   
     wx.request({
       url: 'https://wm.hengdikeji.com/api/v1/addres',
       method: 'POST',
@@ -298,6 +268,7 @@ Page({
         p: that.data.areaInfo.p,
         c: that.data.areaInfo.c,
         a: that.data.areaInfo.a,
+        vip: that.data.inputVip
       },
       header: {
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
@@ -355,6 +326,11 @@ Page({
         address: e.detail.value,
       })
     };
+    if (e.target.dataset.type === 'vip') {
+      that.setData({
+        inputVip: e.detail.value,
+      })
+    };
   },
 
   modifyInfo: function() {
@@ -396,6 +372,7 @@ Page({
           inputAge: data.age,
           inputPhone: data.mobile,
           inputWork: data.jobType,
+          inputVip:data.vip,
           areaInfo: areaInfo,
           areaName: data.p + ' ' + data.c + ' ' + data.a,
           areaInfoColor: data.p || data.c || data.a ? '#333' : '#c7c6cc',

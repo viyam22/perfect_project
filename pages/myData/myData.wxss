@@ -209,3 +209,13 @@
   margin-right: 5rpx;
   text-align: center;
 }
+.red{
+  color: red;
+  display: initial;
+  
+}
+.left{
+  display: block;
+  text-align: right;
+  width: 150rpx
+}

@@ -1,0 +1,43 @@
+<view class="">
+  <import src="../../templates/component.wxml"/>
+  <template is="banner"/>
+
+  <view class="headData-container">
+    <image class="headData-img bgAttr" src="{{userInfo.avatarUrl}}"></image>
+    <view class="headData-name">{{userInfo.nickName}}</view>
+    <view class="headData-data-box">
+      <view class="headData-data">{{userInfo.myRink}}</view>
+      <view class="headData-data-name">排行</view>
+    </view>
+    <view class="headData-data-box">
+      <view class="headData-data">{{userInfo.myRun}}</view>
+      <view class="headData-data-name">总步数</view>
+    </view>
+    <view class="headData-data-box">
+      <view class="headData-data">{{userInfo.myPoint}}</view>
+      <view class="headData-data-name">积分</view>
+    </view>
+  </view>
+
+  <view class="bd-container">
+    <view class="bd-title">我的朋友圈</view>
+
+    <view class="count-box border-bottom" wx:for="{{myFriends}}" wx:key="item">
+        <text class="ranking-num">{{item.ranking}}</text>
+        <image class="head-img bgAttr" src="{{item.avatar}}"></image>
+        <view class="data-box">
+          <view class="fri-name">{{item.nickNake}}</view>
+        </view>
+
+         <view class="walk-count-orange" wx:if="{{item.ranking === 1}}"><text class="walk-count">{{item.run}}</text>步</view> 
+         <view class="walk-count-green"  wx:if="{{item.ranking !== 1}}"><text class="walk-count">{{item.run}}</text>步</view> 
+    </view>
+
+    <!--<view class="walk-box">
+      <view class="weekday">星期四</view>
+      <view class="count">93874步</view>
+      <view class="btn-exchange {{exchangeClass}}" bindtap="exchangePoints" bindtap="maskPlay">{{isExchageTip}}</view>
+    </view>-->
+  </view>
+
+</view>

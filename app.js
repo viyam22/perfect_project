@@ -22,6 +22,9 @@ App({
             });
           });
         });
+        that.myFriends(function(data){
+          typeof cb == "function" && cb(that.globalData)
+        });
       });
     });
   },
@@ -186,7 +189,20 @@ App({
       }
     });
   },
-
+  myFriends:function(cb){
+    var that = this;
+    var data = that.globalData.accessTokenData;
+    wx.request({
+      url: 'https://wm.hengdikeji.com/api/v1/myFriends',
+      header: {
+        Authorization: data.token_type + ' ' + data.access_token,
+      },
+      success: function ({ data }) {
+        that.globalData.myFriends = data;
+        typeof cb == "function" && cb(that.globalData.myFriends)
+      }
+    });
+  },
   globalData: {
     userInfo: null,
     accessTokenData: null,
@@ -194,5 +210,6 @@ App({
     userData: null,
     todayRinking: null,
     totalRinking: null,
+    myFriends:null,
   }
 })
