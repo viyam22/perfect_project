@@ -3,7 +3,7 @@
 App({
   onLaunch: function(res) {
     var that = this;
-    that.globalData.shareId = res.query.id || '0'
+    that.globalData.shareId = res.query.id || '0';
     that.appInitData();
   },
 
