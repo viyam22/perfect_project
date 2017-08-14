@@ -1,8 +1,7 @@
 //app.js
 App({
-  onLaunch: function(res) {
+  onLaunch: function() {
     var that = this;
-    that.globalData.shareId = res.query.id || '0'
     that.appInitData();
   },
 
@@ -69,6 +68,18 @@ App({
   isGetAccess: function(openid, cb) {
     var that = this;
     var myDate = new Date().getTime();
+    // var data = {
+    //         parent_id: that.globalData.shareId,
+    //         password: '111111',
+    //         name: openid,
+    //         nickName: that.globalData.userInfo.nickName,
+    //         avatar: that.globalData.userInfo.avatarUrl,
+    //         gender: that.globalData.userInfo.gender,
+    //         grant_type: 'password',
+    //         client_id: '23',
+    //         client_secret: '0usgaQLHyF4diBWIxk56JOGaFaNu9R7vW1jUE4Tm'
+    //       };
+    //       console.log('----', data)
     try {
       var saveTime = wx.getStorageSync('saveTime');
       if (saveTime && saveTime > myDate + 120) {
@@ -210,5 +221,6 @@ App({
     todayRinking: null,
     totalRinking: null,
     myFriends:null,
+    query:null,
   }
 })

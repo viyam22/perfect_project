@@ -54,6 +54,10 @@ Page({
     })
   },
 
+  onLoad:function(options) {
+    app.globalData.shareId = options.id || '0'
+  },
+
   onShow: function() {
     var that = this;
     app.appInitData(function(globalData){
@@ -164,6 +168,7 @@ Page({
   },
 
   onShareAppMessage: function () {
+    console.log('转发', '/pages/home/home?id=' + app.globalData.userData.id)
     return {
       title: '完美邀您挑战百万俱乐部',
       path: '/pages/home/home?id=' + app.globalData.userData.id,
