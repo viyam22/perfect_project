@@ -33,7 +33,6 @@
       <view class="left">
           <view class="red">*</view> 手机号码
       </view>
-   
       <input class="input-box" disabled="{{isNotWrite}}" placeholder="11位手机号" maxlength="11" placeholder-class="input-text" bindblur="getInputVal" data-type="phone" value="{{inputPhone}}"></input>
     </view>
     <view class="input-lists">
