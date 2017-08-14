@@ -58,12 +58,12 @@
   left: 0;
 }
 .explain-img {
-  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/explain_img.png');
+  background-image: url('http://ouig0xbeg.bkt.clouddn.com/sm-21.png');
   width: 651rpx;
   height: 996rpx;
   position: absolute;
   left: 48rpx;
-  top: 16rpx;
+  top: 27rpx;
 }
 .explain-close {
   background-image: url('http://or03790fw.bkt.clouddn.com/perfect/btn_close0.png');
@@ -75,7 +75,7 @@
   position: absolute; 
   left: 50%;
   transform: translateX(-50%);
-  top: 1024rpx;
+  top: 971rpx;
 }
 
 .banner {
