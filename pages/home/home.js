@@ -54,6 +54,10 @@ Page({
     })
   },
 
+  onLoad:function(options) {
+    app.globalData.shareId = options.id || '0'
+  },
+
   onShow: function() {
     var that = this;
     app.appInitData(function(globalData){
@@ -98,7 +102,23 @@ Page({
   initData: function() {
     var that = this;
     var data = app.globalData.userData;
-    if (data.ischeck === 0) {
+    
+    if (data.myAddres != 1) {
+      wx.showModal({
+        title: '温馨提示',
+        content: "请先完善个人信息",
+        showCancel: false,
+        confirmText: '确定',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../myData/myData'
+            })
+          }
+        }
+      })
+    }
+    if ( data.ischeck === 0) {
       var signData = {
         signClass: 'sign',
         signTip: '签到',
@@ -151,6 +171,7 @@ Page({
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
       success: function({data}) {
+  
         var signData = {
           signClass: 'signed',
           signTip: '已签到' + data.checkData + '天',
@@ -159,12 +180,15 @@ Page({
         that.setData({
           signData: signData,
         })
+       
       }
     });
   },
 
   onShareAppMessage: function () {
-    console.log(app.globalData.userData.id);
+
+    console.log('转发', '/pages/home/home?id=' + app.globalData.userData.id);
+
     return {
       title: '完美邀您挑战百万俱乐部',
       path: '/pages/home/home?id=' + app.globalData.userData.id,

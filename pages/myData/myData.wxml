@@ -47,7 +47,7 @@
           <view class="red">*</view> 详细地址
       </view>
   
-      <input value="{{address}}" class="copy-box" disabled="{{isNotWrite}}" placeholder="关系到活动奖品寄送，请填正确地址" placeholder-class="input-text" bindinput="copyAddress" maxlength="35"  bindblur="getInputVal" data-type="adress"></input>
+      <input value="{{address}}" class="copy-box" disabled="{{isNotWrite}}" placeholder="" placeholder-class="input-text" bindinput="copyAddress" maxlength="35"  bindblur="getInputVal" data-type="adress"></input>
       <text class="copy-address">{{address?address:'关系到活动奖品寄送，请填正确地址'}}</text>
     </view>
     <view class="input-lists">
@@ -56,6 +56,9 @@
       <input class="input-box" disabled="{{isNotWrite}}" placeholder="vip卡号" placeholder-class="input-text" bindblur="getInputVal" data-type="vip" value="{{inputVip}}"></input>
     </view>
     <view class="input-lists">
+      <view class="myprompt">
+        *请先点击修改信息才可填写内容，填写完后点击保存即可提交
+      </view>
     </view>
   </view>
   <view class="btn-save" bindtap="{{buttonFun}}">{{buttonTip}}</view>

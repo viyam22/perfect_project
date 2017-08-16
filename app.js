@@ -2,27 +2,30 @@
 App({
   onLaunch: function(res) {
     var that = this;
+
     that.globalData.shareId = res.query.id || '0';
+
     that.appInitData();
   },
 
   appInitData: function(cb, id) {
     var that = this;
-    that.getUserInfo();
-    that.getOpenid(function(openid) {
-      that.isGetAccess(openid, function(data) {
-        that.getWxRunData();
-        that.exchangeData(function(data) {
-          that.getUserData(function(data) {
-            that.todayRinking(function(data) {
-              that.totalRinking(function(data) {
-                typeof cb == "function" && cb(that.globalData)
-              })
+    that.getUserInfo(function(data){
+      that.getOpenid(function (openid) {
+        that.isGetAccess(openid, function (data) {
+          that.getWxRunData();
+          that.exchangeData(function (data) {
+            that.getUserData(function (data) {
+              that.todayRinking(function (data) {
+                that.totalRinking(function (data) {
+                  typeof cb == "function" && cb(that.globalData)
+                })
+              });
             });
           });
-        });
-        that.myFriends(function(data){
-          typeof cb == "function" && cb(that.globalData)
+          that.myFriends(function (data) {
+            typeof cb == "function" && cb(that.globalData)
+          });
         });
       });
     });
@@ -71,6 +74,7 @@ App({
     var myDate = new Date().getTime();
     try {
       var saveTime = wx.getStorageSync('saveTime');
+
       if (saveTime && saveTime > myDate + 120) {
           that.globalData.accessTokenData = wx.getStorageSync('access_token');
           typeof cb == "function" && cb(wx.getStorageSync('access_token'))
@@ -97,10 +101,11 @@ App({
             } catch (e) {    
             }
             typeof cb == "function" && cb(data)
-          }
+        }
         });
       }
     } catch (e) {
+     
     }
   },
 
@@ -154,6 +159,7 @@ App({
       },
       success: function({data}) {
         that.globalData.userData = data;
+       
         typeof cb == "function" && cb(that.globalData.userData)
       }
     });
@@ -210,5 +216,6 @@ App({
     todayRinking: null,
     totalRinking: null,
     myFriends:null,
+    query:null,
   }
 })

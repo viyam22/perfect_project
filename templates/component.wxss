@@ -51,18 +51,21 @@
 .explain-mask {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 1400rpx;
   background: rgba(0, 0, 0, 0.7);
   z-index: 10;
   top: 0;
   left: 0;
+  bottom: 0;
 }
 .explain-img {
-  background-image: url('http://ouig0xbeg.bkt.clouddn.com/sm-21.png');
-  width: 651rpx;
-  height: 996rpx;
-  position: absolute;
-  left: 48rpx;
+  background-image: url('http://ouig0xbeg.bkt.clouddn.com/explain.png');
+  /*background-image: url('../../assets/explain_img.png');*/
+  width: 680rpx;
+  height: 1207rpx;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   top: 27rpx;
 }
 .explain-close {
@@ -75,7 +78,7 @@
   position: absolute; 
   left: 50%;
   transform: translateX(-50%);
-  top: 971rpx;
+  top: 1247rpx;
 }
 
 .banner {
