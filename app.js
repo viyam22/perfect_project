@@ -6,6 +6,7 @@ App({
     that.globalData.shareId = res.query.id || '0';
 
     that.appInitData();
+  
   },
 
   appInitData: function(cb, id) {
@@ -18,6 +19,7 @@ App({
             that.getUserData(function (data) {
               that.todayRinking(function (data) {
                 that.totalRinking(function (data) {
+                 
                   typeof cb == "function" && cb(that.globalData)
                 })
               });
