@@ -29,6 +29,7 @@ Page({
     },
     exchangeClass: 'canNotExchange',   //兑换积分按钮样式
     myRink: 0,  //我的排名
+    greetings:'早上好～'
   },
   // isExplain: header.explainTipToggle,
   getExchangeClass: function() {
@@ -56,6 +57,21 @@ Page({
 
   onLoad:function(options) {
     app.globalData.shareId = options.id || '0'
+    var now = new Date();
+    var hour = now.getHours();
+    var wh='';
+    if (hour < 6) { wh ="凌晨好~"; }
+    else if (hour < 9) { wh = "早上好~";}
+    else if (hour < 12) { wh = "上午好~"; }
+    else if (hour < 14) { wh = "中午好~"; }
+    else if (hour < 17) { wh = "下午好~"; }
+    else if (hour < 19) { wh = "傍晚好~"; }
+    else if (hour < 22) { wh = "晚上好~"; }
+    else { wh = "深夜好~"; } 
+  
+    this.setData({
+      greetings: wh,
+    })
   },
 
   onShow: function() {
@@ -102,7 +118,23 @@ Page({
   initData: function() {
     var that = this;
     var data = app.globalData.userData;
-    if (data.ischeck === 0) {
+    
+    if (data.myAddres != 1) {
+      wx.showModal({
+        title: '温馨提示',
+        content: "请先完善个人信息",
+        showCancel: false,
+        confirmText: '确定',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../myData/myData'
+            })
+          }
+        }
+      })
+    }
+    if ( data.ischeck === 0) {
       var signData = {
         signClass: 'sign',
         signTip: '签到',
@@ -130,6 +162,7 @@ Page({
         myRink: app.globalData.todayRinking.myRank,
       })
     that.getProgress();
+   
     if (data.created_at.date === data.updated_at.date) {
       wx.navigateTo({
         url: '../guide/guide'
@@ -155,6 +188,7 @@ Page({
         Authorization: app.globalData.accessTokenData.token_type + ' ' + app.globalData.accessTokenData.access_token,
       },
       success: function({data}) {
+  
         var signData = {
           signClass: 'signed',
           signTip: '已签到' + data.checkData + '天',
@@ -163,12 +197,15 @@ Page({
         that.setData({
           signData: signData,
         })
+       
       }
     });
   },
 
   onShareAppMessage: function () {
-    console.log('转发', '/pages/home/home?id=' + app.globalData.userData.id)
+
+    console.log('转发', '/pages/home/home?id=' + app.globalData.userData.id);
+
     return {
       title: '完美邀您挑战百万俱乐部',
       path: '/pages/home/home?id=' + app.globalData.userData.id,

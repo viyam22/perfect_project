@@ -26,7 +26,7 @@
         <text class="ranking-num">{{item.ranking}}</text>
         <image class="head-img bgAttr" src="{{item.avatar}}"></image>
         <view class="data-box">
-          <view class="fri-name">{{item.nickNake}}</view>
+          <view class="fri-name">{{item.nickName}}</view>
         </view>
 
          <view class="walk-count-orange" wx:if="{{item.ranking === 1}}"><text class="walk-count">{{item.run}}</text>步</view> 

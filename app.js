@@ -1,27 +1,33 @@
 //app.js
 App({
-  onLaunch: function() {
+  onLaunch: function(res) {
     var that = this;
+
+    that.globalData.shareId = res.query.id || '0';
+
     that.appInitData();
+  
   },
 
   appInitData: function(cb, id) {
     var that = this;
-    that.getUserInfo();
-    that.getOpenid(function(openid) {
-      that.isGetAccess(openid, function(data) {
-        that.getWxRunData();
-        that.exchangeData(function(data) {
-          that.getUserData(function(data) {
-            that.todayRinking(function(data) {
-              that.totalRinking(function(data) {
-                typeof cb == "function" && cb(that.globalData)
-              })
+    that.getUserInfo(function(data){
+      that.getOpenid(function (openid) {
+        that.isGetAccess(openid, function (data) {
+          that.getWxRunData();
+          that.exchangeData(function (data) {
+            that.getUserData(function (data) {
+              that.todayRinking(function (data) {
+                that.totalRinking(function (data) {
+                 
+                  typeof cb == "function" && cb(that.globalData)
+                })
+              });
             });
           });
-        });
-        that.myFriends(function(data){
-          typeof cb == "function" && cb(that.globalData)
+          that.myFriends(function (data) {
+            typeof cb == "function" && cb(that.globalData)
+          });
         });
       });
     });
@@ -68,20 +74,9 @@ App({
   isGetAccess: function(openid, cb) {
     var that = this;
     var myDate = new Date().getTime();
-    // var data = {
-    //         parent_id: that.globalData.shareId,
-    //         password: '111111',
-    //         name: openid,
-    //         nickName: that.globalData.userInfo.nickName,
-    //         avatar: that.globalData.userInfo.avatarUrl,
-    //         gender: that.globalData.userInfo.gender,
-    //         grant_type: 'password',
-    //         client_id: '23',
-    //         client_secret: '0usgaQLHyF4diBWIxk56JOGaFaNu9R7vW1jUE4Tm'
-    //       };
-    //       console.log('----', data)
     try {
       var saveTime = wx.getStorageSync('saveTime');
+
       if (saveTime && saveTime > myDate + 120) {
           that.globalData.accessTokenData = wx.getStorageSync('access_token');
           typeof cb == "function" && cb(wx.getStorageSync('access_token'))
@@ -108,10 +103,11 @@ App({
             } catch (e) {    
             }
             typeof cb == "function" && cb(data)
-          }
+        }
         });
       }
     } catch (e) {
+     
     }
   },
 
@@ -165,6 +161,7 @@ App({
       },
       success: function({data}) {
         that.globalData.userData = data;
+       
         typeof cb == "function" && cb(that.globalData.userData)
       }
     });

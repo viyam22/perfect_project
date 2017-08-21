@@ -59,7 +59,7 @@
   bottom: 0;
 }
 .explain-img {
-  background-image: url('http://or03790fw.bkt.clouddn.com/perfect/explain1.png');
+  background-image: url('http://ouig0xbeg.bkt.clouddn.com/explain1.png');
   /*background-image: url('../../assets/explain_img.png');*/
   width: 680rpx;
   height: 1207rpx;

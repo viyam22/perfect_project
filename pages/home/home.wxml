@@ -7,7 +7,7 @@
   <view class="userinfo">
     <image class="userinfo-avatar bgAttr" background-size="cover" src="{{userInfo.avatarUrl}}"></image>
     <view class="userinfo-box">
-      <view class="userinfo-sign">早上好~</view>
+      <view class="userinfo-sign">{{greetings}}</view>
       <view class="userinfo-nickname">{{userInfo.nickName}}</view>
     </view>
     <button class="btn-share btn" open-type="share">邀请好友+{{pointData.sharePoint}}</button>

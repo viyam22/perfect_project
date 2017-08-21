@@ -259,7 +259,7 @@ Page({
       url: 'https://wm.hengdikeji.com/api/v1/addres',
       method: 'POST',
       data: {
-        gender: that.data.sexIndex + 1,
+        gender: parseInt(that.data.sexIndex) + 1,
         name: that.data.inputName,
         jobType: that.data.inputWork,
         mobile: that.data.inputPhone,
@@ -284,6 +284,7 @@ Page({
             selectFun: '',
             isNotWrite: true,
           })
+          app.globalData.userData.myAddres = 1;
           setTimeout(function() {
             that.toMinePage();
           }, 2000)
@@ -383,7 +384,8 @@ Page({
           buttonFun: 'modifyInfo',
           selectFun: '',
           buttonTip: '修改信息',
-        })
+        });
+       
       }
     })
   }
