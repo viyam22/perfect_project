@@ -2,24 +2,28 @@
 App({
   onLaunch: function(res) {
     var that = this;
-
     that.globalData.shareId = res.query.id || '0';
-
-    that.appInitData();
+    
+    // that.appInitData();
   
   },
 
   appInitData: function(cb, id) {
     var that = this;
     that.getUserInfo(function(data){
+      
       that.getOpenid(function (openid) {
+        
         that.isGetAccess(openid, function (data) {
           that.getWxRunData();
           that.exchangeData(function (data) {
+            
             that.getUserData(function (data) {
+              
               that.todayRinking(function (data) {
+                
                 that.totalRinking(function (data) {
-                 
+                  
                   typeof cb == "function" && cb(that.globalData)
                 })
               });
@@ -42,6 +46,7 @@ App({
         Authorization: data.token_type + ' ' + data.access_token,        
       },
       success: function({data}) {
+        console.log('exchangeData', data)
         that.globalData.exchangeData = data.reverse();
         typeof cb == "function" && cb(that.globalData.exchangeData)
       }
@@ -61,6 +66,7 @@ App({
           },
           success: function({data: {openid}}) {
             // that.getAccessToken(openid);
+            console.log('getOpenid', openid)
             typeof cb == "function" && cb(openid)
           }
         });
@@ -72,6 +78,7 @@ App({
   },
 
   isGetAccess: function(openid, cb) {
+    console.log('isGetAccess')
     var that = this;
     var myDate = new Date().getTime();
     try {
@@ -121,6 +128,7 @@ App({
       wx.getUserInfo({
         withCredentials: false,
         success: function(res) {
+          console.log('getUserInfo', res)
           that.globalData.userInfo = res.userInfo;
           typeof cb == "function" && cb(that.globalData.userInfo)
         }
@@ -154,6 +162,9 @@ App({
   getUserData: function(cb){
     var that = this;
     var data = that.globalData.accessTokenData;
+    
+    if (!data) return;
+
     wx.request({
       url: 'https://wm.hengdikeji.com/api/v1/user',
       header: {
@@ -161,7 +172,7 @@ App({
       },
       success: function({data}) {
         that.globalData.userData = data;
-       
+        console.log('getUserData', data)
         typeof cb == "function" && cb(that.globalData.userData)
       }
     });
@@ -176,6 +187,7 @@ App({
         Authorization: data.token_type + ' ' + data.access_token,
       },
       success: function({data}) {
+        console.log('todayRinking', data)
         that.globalData.todayRinking = data;
         typeof cb == "function" && cb(that.globalData.todayRinking)
       }
@@ -192,6 +204,7 @@ App({
       },
       success: function({data}) {
         that.globalData.totalRinking = data;
+        console.log('totalRinking', data)
         typeof cb == "function" && cb(that.globalData.todayRinking)
       }
     });
@@ -218,6 +231,6 @@ App({
     todayRinking: null,
     totalRinking: null,
     myFriends:null,
-    query:null,
+    shareId:null,
   }
 })

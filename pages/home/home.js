@@ -56,6 +56,7 @@ Page({
   },
 
   onLoad:function(options) {
+    var that = this;
     app.globalData.shareId = options.id || '0'
     var now = new Date();
     var hour = now.getHours();
@@ -69,18 +70,22 @@ Page({
     else if (hour < 22) { wh = "晚上好~"; }
     else { wh = "深夜好~"; } 
   
-    this.setData({
+    that.setData({
       greetings: wh,
+    })
+
+    app.appInitData(function(globalData){
+      that.setData({
+        userInfo: globalData.userInfo,
+      })
+      that.initData();
     })
   },
 
   onShow: function() {
     var that = this;
-    app.appInitData(function(globalData){
+    app.getUserData(function(){
       that.initData();
-      that.setData({
-        userInfo: globalData.userInfo,
-      })
     })
   },
 
@@ -117,9 +122,8 @@ Page({
 
   initData: function() {
     var that = this;
-    var data = app.globalData.userData;
-    
-    if (data.myAddres != 1) {
+    var data = app.globalData.userData || '';
+    if (data && data.myAddres != 1) {
       wx.showModal({
         title: '温馨提示',
         content: "请先完善个人信息",
@@ -134,7 +138,7 @@ Page({
         }
       })
     }
-    if ( data.ischeck === 0) {
+    if (data && data.ischeck === 0) {
       var signData = {
         signClass: 'sign',
         signTip: '签到',
@@ -154,6 +158,7 @@ Page({
       isExchangeFun: data.basis_run - data.run < 0 && app.globalData.exchangeData[0].exchange === 0 ? 'maskToggle' : '',
       canExchangePoint: Math.floor(data.run * data.pro),
     }
+    if (!app.globalData.todayRinking) return;
     that.setData({
         signData: signData,
         pointData: pointData,

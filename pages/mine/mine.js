@@ -11,6 +11,15 @@ Page({
   
   onShow: function () {
     var that = this;
+    app.getUserData(function() {
+      app.myFriends(function () {
+        that.initData();
+      })
+    })
+  },
+
+  initData: function() {
+    var that = this;
     var userInfo = {
       nickName: app.globalData.userInfo.nickName,
       avatarUrl: app.globalData.userInfo.avatarUrl,

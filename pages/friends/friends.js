@@ -13,6 +13,15 @@ Page({
 
   onShow: function () {
     var that = this;
+    app.getUserData(function() {
+      app.todayRinking(function () {
+        that.initData();
+      })
+    })
+  },
+
+  initData: function() {
+    var that = this;
     var datas = app.globalData.myFriends;
     var myFriends = datas.data;
    
@@ -29,6 +38,7 @@ Page({
       page: datas.next_page_url
     })
   },
+
   onReachBottom: function () {
     var that = this;
     var data = app.globalData.accessTokenData;

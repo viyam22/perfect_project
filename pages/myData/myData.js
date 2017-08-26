@@ -56,7 +56,7 @@ Page({
    */
   onShow: function (options) {
     var that = this;
-    app.appInitData(function(globalData){
+    app.getUserInfo(function() {
       that.initData();
     })
     // 初始化动画变量
